@@ -1,0 +1,539 @@
+/* app/globals.css */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root {
+  --obsidian-void: #070508;
+  --obsidian-dark: #0e0a12;
+  --obsidian-card: #140e1b;
+  --obsidian-surface: #1d1427;
+  --obsidian-border: #312140;
+  --obsidian-border-glow: rgba(255, 0, 127, 0.35);
+
+  --neon-magenta: #ff007f;
+  --neon-magenta-hover: #ff2a94;
+  --neon-magenta-glow: rgba(255, 0, 127, 0.45);
+
+  --blood-crimson: #85082e;
+  --blood-crimson-bright: #a81144;
+  --blood-glow: rgba(168, 17, 68, 0.5);
+
+  --silver-metallic: #c9c2cc;
+  --silver-bright: #e5dfe7;
+  --bone-white: #f5f0f7;
+  --bone-muted: #9f94a6;
+  --smoky-plum: #27162b;
+
+  --font-gothic-crest: 'Cinzel Decorative', serif;
+  --font-gothic-serif: 'Cinzel', serif;
+  --font-fraktur: 'UnifrakturMaguntia', cursive;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+/* Global Reset & Base */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--obsidian-void);
+  color: var(--bone-white);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(255, 0, 127, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 85% 65%, rgba(133, 8, 46, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(39, 22, 43, 0.4) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--obsidian-void);
+}
+::-webkit-scrollbar-thumb {
+  background: #2a1b36;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 0, 127, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-magenta);
+  box-shadow: 0 0 10px var(--neon-magenta);
+}
+
+/* Typography Utility Classes */
+.font-crest {
+  font-family: var(--font-gothic-crest);
+}
+
+.font-serif {
+  font-family: var(--font-gothic-serif);
+  letter-spacing: 0.08em;
+}
+
+.font-fraktur {
+  font-family: var(--font-fraktur);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-magenta {
+  color: var(--neon-magenta) !important;
+}
+
+.text-crimson {
+  color: var(--blood-crimson-bright) !important;
+}
+
+.text-silver {
+  color: var(--silver-metallic) !important;
+}
+
+.text-bone {
+  color: var(--bone-white) !important;
+}
+
+.text-bone-muted {
+  color: var(--bone-muted) !important;
+}
+
+/* Glowing text */
+.glow-magenta-text {
+  text-shadow: 0 0 12px rgba(255, 0, 127, 0.6), 0 0 25px rgba(255, 0, 127, 0.3);
+}
+
+.glow-silver-text {
+  text-shadow: 0 0 10px rgba(229, 223, 231, 0.5);
+}
+
+/* Background Gradients */
+.bg-obsidian-void {
+  background-color: var(--obsidian-void);
+}
+
+.bg-obsidian-card {
+  background-color: var(--obsidian-card);
+}
+
+.bg-obsidian-surface {
+  background-color: var(--obsidian-surface);
+}
+
+.bg-glassmorphism {
+  background: rgba(14, 10, 18, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 0, 127, 0.15);
+}
+
+/* Gothic Luxury Cards */
+.gothic-card {
+  background: rgba(20, 14, 27, 0.82);
+  border: 1px solid rgba(201, 194, 204, 0.12);
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.gothic-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 127, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.gothic-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 0, 127, 0.38);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 0, 127, 0.15);
+}
+
+.gothic-card:hover::before {
+  opacity: 1;
+}
+
+/* Stiletto & Gothic Buttons */
+.btn-gothic-primary {
+  background: linear-gradient(135deg, #a81144 0%, #ff007f 100%);
+  color: #ffffff !important;
+  font-family: var(--font-gothic-serif);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  padding: 0.85rem 1.85rem;
+  border: none;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(255, 0, 127, 0.35);
+  transition: all 0.3s ease;
+  clip-path: polygon(7% 0, 100% 0, 93% 100%, 0% 100%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-gothic-primary:hover {
+  background: linear-gradient(135deg, #bd1851 0%, #ff2a94 100%);
+  box-shadow: 0 6px 25px rgba(255, 0, 127, 0.6), 0 0 15px rgba(255, 0, 127, 0.4);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+.btn-gothic-outline {
+  background: transparent;
+  color: var(--bone-white) !important;
+  font-family: var(--font-gothic-serif);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  padding: 0.8rem 1.75rem;
+  border: 1px solid rgba(201, 194, 204, 0.4);
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+  clip-path: polygon(7% 0, 100% 0, 93% 100%, 0% 100%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-gothic-outline:hover {
+  background: rgba(255, 0, 127, 0.1);
+  border-color: var(--neon-magenta);
+  color: var(--neon-magenta) !important;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-gothic-sm {
+  padding: 0.55rem 1.25rem;
+  font-size: 0.78rem;
+}
+
+/* Badges */
+.badge-gothic {
+  background: rgba(255, 0, 127, 0.12);
+  color: var(--neon-magenta);
+  border: 1px solid rgba(255, 0, 127, 0.3);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+.badge-silver {
+  background: rgba(201, 194, 204, 0.08);
+  color: var(--silver-metallic);
+  border: 1px solid rgba(201, 194, 204, 0.25);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: 3px;
+}
+
+.badge-status-pendiente {
+  background: rgba(255, 193, 7, 0.15);
+  color: #ffc107;
+  border: 1px solid rgba(255, 193, 7, 0.4);
+}
+
+.badge-status-confirmado {
+  background: rgba(40, 167, 69, 0.15);
+  color: #28a745;
+  border: 1px solid rgba(40, 167, 69, 0.4);
+}
+
+.badge-status-completado {
+  background: rgba(23, 162, 184, 0.15);
+  color: #17a2b8;
+  border: 1px solid rgba(23, 162, 184, 0.4);
+}
+
+.badge-status-cancelado {
+  background: rgba(220, 53, 69, 0.15);
+  color: #dc3545;
+  border: 1px solid rgba(220, 53, 69, 0.4);
+}
+
+/* Section divider with crest */
+.gothic-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  color: rgba(255, 0, 127, 0.45);
+  font-size: 0.9rem;
+}
+
+.gothic-divider::before,
+.gothic-divider::after {
+  content: '';
+  height: 1px;
+  width: 90px;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 127, 0.5), transparent);
+}
+
+/* Ambient Logo Glow */
+.logo-glow-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-glow-wrapper::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  background: radial-gradient(circle, rgba(255, 0, 127, 0.28) 0%, rgba(133, 8, 46, 0.15) 45%, transparent 70%);
+  z-index: -1;
+  filter: blur(15px);
+}
+
+/* Gallery image hover effect */
+.gallery-img-wrapper {
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4/5;
+  background-color: #100b17;
+}
+
+.gallery-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  filter: grayscale(18%) contrast(108%);
+}
+
+.gallery-img-wrapper:hover img {
+  transform: scale(1.08);
+  filter: grayscale(0%) contrast(115%);
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(7, 5, 8, 0.95) 0%, rgba(7, 5, 8, 0.4) 50%, transparent 100%);
+  opacity: 0.85;
+  transition: opacity 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+}
+
+.gallery-img-wrapper:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* Nav Pills Custom Gothic */
+.nav-pills-gothic .nav-link {
+  color: var(--bone-muted);
+  background: rgba(20, 14, 27, 0.6);
+  border: 1px solid rgba(201, 194, 204, 0.15);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1.1rem;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+
+.nav-pills-gothic .nav-link:hover,
+.nav-pills-gothic .nav-link.active {
+  background: rgba(255, 0, 127, 0.15);
+  color: var(--neon-magenta);
+  border-color: var(--neon-magenta);
+  box-shadow: 0 0 12px rgba(255, 0, 127, 0.25);
+}
+
+/* Accordion Gothic */
+.accordion-gothic .accordion-item {
+  background: rgba(20, 14, 27, 0.7);
+  border: 1px solid rgba(201, 194, 204, 0.12);
+  border-radius: 6px !important;
+  overflow: hidden;
+}
+
+.accordion-gothic .accordion-button {
+  background: transparent;
+  color: var(--bone-white);
+  font-family: var(--font-gothic-serif);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  padding: 1.15rem 1.4rem;
+  box-shadow: none;
+}
+
+.accordion-gothic .accordion-button:not(.collapsed) {
+  background: rgba(255, 0, 127, 0.08);
+  color: var(--neon-magenta);
+  border-bottom: 1px solid rgba(255, 0, 127, 0.2);
+}
+
+.accordion-gothic .accordion-body {
+  color: var(--bone-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  padding: 1.25rem 1.4rem;
+}
+
+/* Shimmer animation */
+@keyframes gothicShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #f5f0f7 0%, #ff007f 40%, #ffffff 50%, #ff007f 60%, #f5f0f7 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gothicShimmer 6s linear infinite;
+}
+
+/* Floating WhatsApp Pulsing */
+.floating-whatsapp-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+  z-index: 1040;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.floating-whatsapp-btn:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+  color: #fff;
+}
+
+.floating-whatsapp-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #25d366;
+  animation: pulseWhatsapp 2s infinite;
+}
+
+@keyframes pulseWhatsapp {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Form Controls Gothic */
+.form-control-gothic,
+.form-select-gothic {
+  background-color: rgba(14, 10, 18, 0.85) !important;
+  border: 1px solid rgba(201, 194, 204, 0.22) !important;
+  color: var(--bone-white) !important;
+  font-family: var(--font-body);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  transition: all 0.25s ease;
+}
+
+.form-control-gothic:focus,
+.form-select-gothic:focus {
+  background-color: rgba(20, 14, 27, 0.95) !important;
+  border-color: var(--neon-magenta) !important;
+  box-shadow: 0 0 14px rgba(255, 0, 127, 0.35) !important;
+  color: #fff !important;
+  outline: none;
+}
+
+.form-control-gothic::placeholder {
+  color: rgba(159, 148, 166, 0.6);
+  font-style: italic;
+}
+
+/* Modals */
+.gothic-modal {
+  background: rgba(14, 10, 18, 0.96);
+  border: 1px solid rgba(255, 0, 127, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 0, 127, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 8px;
+}
+
+/* Helper text */
+.fs-7 {
+  font-size: 0.82rem;
+}
+.fs-8 {
+  font-size: 0.74rem;
+}
+.tracking-wider {
+  letter-spacing: 0.15em;
+}
+.hover-magenta {
+  transition: color 0.25s ease;
+}
+.hover-magenta:hover {
+  color: var(--neon-magenta) !important;
+}
