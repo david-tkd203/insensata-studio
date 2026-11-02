@@ -18,31 +18,26 @@ export default function Testimonials() {
             <span className="runes-pulse">✦ ☾ ♰ ☽ ✦</span>
           </div>
           <p className="text-bone-muted mx-auto" style={{ maxWidth: '650px' }}>
-            Quienes pisan nuestro atelier no regresan a la manicuría ordinaria. Echa una mirada a los espejos de nuestras iniciadas.
+            Quienes pisan nuestro atelier no regresan a la manicuría ordinaria. Echa una mirada a los testimonios de nuestras iniciadas.
           </p>
         </div>
 
-        {/* Testimonials Grid - Espejos Obscuros */}
-        <div className="row g-4 justify-content-center">
-          {TESTIMONIALS.map((t) => (
-            <div key={t.id} className="col-md-6 col-lg-4">
-              <div className="gothic-mirror-card h-100 d-flex flex-column justify-content-between position-relative">
-                {/* Mirror Keystone Rune */}
-                <div className="text-center mb-1">
-                  <span className="text-magenta font-serif fs-7 tracking-wider">✦ ESPEJO OBSCURO ✦</span>
-                </div>
-
+        {/* Editorial Testimonial Wall - Seamless Quote Stream (No Mirror Box Cards) */}
+        <div className="hairline-border-top hairline-border-bottom">
+          <div className="row g-0 justify-content-center">
+            {TESTIMONIALS.map((t) => (
+              <div key={t.id} className="col-lg-4 editorial-quote-col d-flex flex-column justify-content-between">
                 <div>
-                  {/* Floating Gothic Quote Mark & Rating */}
-                  <div className="d-flex justify-content-between align-items-center mb-2">
-                    <span className="mirror-quote-icon">“</span>
-                    <div className="text-magenta fs-7" style={{ letterSpacing: '0.15em' }}>
+                  {/* Floating Rating & Quote Sigil */}
+                  <div className="d-flex justify-content-between align-items-center mb-3">
+                    <span className="text-magenta fs-7" style={{ letterSpacing: '0.2em' }}>
                       {'✦ '.repeat(t.stars)}
-                    </div>
+                    </span>
+                    <span className="text-magenta opacity-25 font-crest fs-3">“</span>
                   </div>
 
                   {/* Quote text */}
-                  <p className="text-silver fs-7 mb-4 fst-italic" style={{ lineHeight: '1.75' }}>
+                  <p className="text-bone fs-6 mb-4 fst-italic" style={{ lineHeight: '1.8' }}>
                     "{t.text}"
                   </p>
                 </div>
@@ -67,10 +62,10 @@ export default function Testimonials() {
                         alt={t.name}
                         className="rounded-circle object-fit-cover"
                         style={{
-                          width: '50px',
-                          height: '50px',
+                          width: '48px',
+                          height: '48px',
                           border: '2px solid var(--neon-magenta)',
-                          boxShadow: '0 0 15px rgba(255, 0, 127, 0.45)',
+                          boxShadow: '0 0 12px rgba(255, 0, 127, 0.4)',
                         }}
                       />
                       <span
@@ -92,8 +87,8 @@ export default function Testimonials() {
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

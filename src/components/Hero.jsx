@@ -103,85 +103,71 @@ export default function Hero({ onOpenBooking }) {
               </a>
             </div>
 
-            {/* 4 Talismanes de Autor (Assurance Badges) */}
-            <div className="row g-3 justify-content-center text-start mt-2">
-              <div className="col-6 col-md-3">
-                <div className="gothic-talisman-card h-100 d-flex flex-column justify-content-between">
-                  <div>
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="talisman-sigil">♰</span>
-                      <span className="font-serif text-bone fw-bold" style={{ fontSize: '0.85rem' }}>
-                        Stilettos XXL
-                      </span>
-                    </div>
-                    <p className="text-bone-muted mb-0" style={{ fontSize: '0.78rem', lineHeight: '1.45' }}>
-                      Curvatura C y ápice reforzado anti-quiebre para largos extremos.
-                    </p>
+            {/* Integrated 4-Pillar Typographic Hallmark Strip (No Card Boxes) */}
+            <div className="hero-hallmark-strip mt-5 pt-3">
+              <div className="row g-0 justify-content-center text-start">
+                {/* Pillar 01 */}
+                <div className="col-6 col-lg-3 hallmark-pillar">
+                  <div className="d-flex align-items-baseline justify-content-between mb-1">
+                    <span className="font-serif text-magenta fw-bold fs-8 tracking-wider">
+                      ♰ ARQUITECTURA
+                    </span>
+                    <span className="ghost-numeral">01</span>
                   </div>
-                  <div className="mt-2 pt-1 border-top border-dark d-flex justify-content-between align-items-center">
-                    <small className="text-magenta font-display fs-8">Arquitectura</small>
-                    <i className="bi bi-arrow-right-short text-bone-muted"></i>
-                  </div>
+                  <h3 className="font-crest text-bone fs-6 fw-bold mb-1">
+                    Stilettos XXL
+                  </h3>
+                  <p className="text-bone-muted mb-0" style={{ fontSize: '0.78rem', lineHeight: '1.5' }}>
+                    Curvatura C y ápice reforzado anti-quiebre para largos extremos.
+                  </p>
                 </div>
-              </div>
 
-              <div className="col-6 col-md-3">
-                <div className="gothic-talisman-card h-100 d-flex flex-column justify-content-between">
-                  <div>
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="talisman-sigil">☾</span>
-                      <span className="font-serif text-bone fw-bold" style={{ fontSize: '0.85rem' }}>
-                        3D Charms & Piercings
-                      </span>
-                    </div>
-                    <p className="text-bone-muted mb-0" style={{ fontSize: '0.78rem', lineHeight: '1.45' }}>
-                      Perforaciones de plata, cruces barrocas y cadenas interdigitales.
-                    </p>
+                {/* Pillar 02 */}
+                <div className="col-6 col-lg-3 hallmark-pillar">
+                  <div className="d-flex align-items-baseline justify-content-between mb-1">
+                    <span className="font-serif text-magenta fw-bold fs-8 tracking-wider">
+                      ☾ JOYERÍA 3D
+                    </span>
+                    <span className="ghost-numeral">02</span>
                   </div>
-                  <div className="mt-2 pt-1 border-top border-dark d-flex justify-content-between align-items-center">
-                    <small className="text-magenta font-display fs-8">Joyería</small>
-                    <i className="bi bi-arrow-right-short text-bone-muted"></i>
-                  </div>
+                  <h3 className="font-crest text-bone fs-6 fw-bold mb-1">
+                    Charms & Piercings
+                  </h3>
+                  <p className="text-bone-muted mb-0" style={{ fontSize: '0.78rem', lineHeight: '1.5' }}>
+                    Perforaciones de plata, cruces barrocas y cadenas interdigitales.
+                  </p>
                 </div>
-              </div>
 
-              <div className="col-6 col-md-3">
-                <div className="gothic-talisman-card h-100 d-flex flex-column justify-content-between">
-                  <div>
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="talisman-sigil">✦</span>
-                      <span className="font-serif text-bone fw-bold" style={{ fontSize: '0.85rem' }}>
-                        Vegano & 9-Free
-                      </span>
-                    </div>
-                    <p className="text-bone-muted mb-0" style={{ fontSize: '0.78rem', lineHeight: '1.45' }}>
-                      Fórmulas libres de toxinas que cuidan tu queratina natural.
-                    </p>
+                {/* Pillar 03 */}
+                <div className="col-6 col-lg-3 hallmark-pillar">
+                  <div className="d-flex align-items-baseline justify-content-between mb-1">
+                    <span className="font-serif text-magenta fw-bold fs-8 tracking-wider">
+                      ✦ PUREZA
+                    </span>
+                    <span className="ghost-numeral">03</span>
                   </div>
-                  <div className="mt-2 pt-1 border-top border-dark d-flex justify-content-between align-items-center">
-                    <small className="text-magenta font-display fs-8">Pureza</small>
-                    <i className="bi bi-arrow-right-short text-bone-muted"></i>
-                  </div>
+                  <h3 className="font-crest text-bone fs-6 fw-bold mb-1">
+                    Vegano & 9-Free
+                  </h3>
+                  <p className="text-bone-muted mb-0" style={{ fontSize: '0.78rem', lineHeight: '1.5' }}>
+                    Fórmulas libres de toxinas que cuidan tu queratina natural.
+                  </p>
                 </div>
-              </div>
 
-              <div className="col-6 col-md-3">
-                <div className="gothic-talisman-card h-100 d-flex flex-column justify-content-between">
-                  <div>
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="talisman-sigil">☽</span>
-                      <span className="font-serif text-bone fw-bold" style={{ fontSize: '0.85rem' }}>
-                        4+ Semanas
-                      </span>
-                    </div>
-                    <p className="text-bone-muted mb-0" style={{ fontSize: '0.78rem', lineHeight: '1.45' }}>
-                      Retención blindada sin levantamientos ni desprendimientos.
-                    </p>
+                {/* Pillar 04 */}
+                <div className="col-6 col-lg-3 hallmark-pillar">
+                  <div className="d-flex align-items-baseline justify-content-between mb-1">
+                    <span className="font-serif text-magenta fw-bold fs-8 tracking-wider">
+                      ☽ GARANTÍA
+                    </span>
+                    <span className="ghost-numeral">04</span>
                   </div>
-                  <div className="mt-2 pt-1 border-top border-dark d-flex justify-content-between align-items-center">
-                    <small className="text-magenta font-display fs-8">Garantía</small>
-                    <i className="bi bi-arrow-right-short text-bone-muted"></i>
-                  </div>
+                  <h3 className="font-crest text-bone fs-6 fw-bold mb-1">
+                    4+ Semanas
+                  </h3>
+                  <p className="text-bone-muted mb-0" style={{ fontSize: '0.78rem', lineHeight: '1.5' }}>
+                    Retención blindada sin levantamientos ni desprendimientos.
+                  </p>
                 </div>
               </div>
             </div>

@@ -97,7 +97,7 @@ ${charmsText}
                   return (
                     <div key={b.id} className="col-md-4">
                       <div
-                        className={`calc-option-box ${isSelected ? 'active' : ''}`}
+                        className={`calc-editorial-option ${isSelected ? 'active' : ''}`}
                         onClick={() => setSelectedBase(b)}
                         role="button"
                         tabIndex={0}
@@ -140,7 +140,7 @@ ${charmsText}
                   return (
                     <div key={s.id} className="col-md-4 col-sm-6">
                       <div
-                        className={`calc-option-box ${isSelected ? 'active' : ''}`}
+                        className={`calc-editorial-option ${isSelected ? 'active' : ''}`}
                         onClick={() => setSelectedShape(s)}
                         role="button"
                         tabIndex={0}
@@ -183,7 +183,7 @@ ${charmsText}
                   return (
                     <div key={a.id} className="col-md-6">
                       <div
-                        className={`calc-option-box ${isSelected ? 'active' : ''}`}
+                        className={`calc-editorial-option ${isSelected ? 'active' : ''}`}
                         onClick={() => setSelectedArt(a)}
                         role="button"
                         tabIndex={0}
@@ -226,7 +226,7 @@ ${charmsText}
                   return (
                     <div key={c.id} className="col-md-6">
                       <div
-                        className={`calc-charm-box ${isChecked ? 'active' : ''}`}
+                        className={`calc-editorial-charm ${isChecked ? 'active' : ''}`}
                         onClick={() => handleToggleCharm(c.id)}
                         role="checkbox"
                         aria-checked={isChecked}
@@ -251,24 +251,18 @@ ${charmsText}
             </div>
           </div>
 
-          {/* Sticky Live Total Summary Column - Grimorio de Cotización */}
+          {/* Sticky Live Total Summary Column - Grimorio de Cotización (Architectural Ledger) */}
           <div className="col-lg-4">
             <div
-              className="gothic-reliquary-card p-4 position-sticky"
+              className="calc-editorial-ledger p-4 position-sticky"
               style={{
                 top: '100px',
-                border: '1px solid rgba(255, 0, 127, 0.45)',
-                boxShadow: '0 15px 50px rgba(0,0,0,0.9), 0 0 30px rgba(255, 0, 127, 0.22)',
               }}
             >
-              {/* Corner Filigree Pins */}
-              <span className="gothic-corner-pin pin-tl">✦</span>
-              <span className="gothic-corner-pin pin-tr">♰</span>
-              <span className="gothic-corner-pin pin-bl">♰</span>
-              <span className="gothic-corner-pin pin-br">✦</span>
-
               <div className="text-center mb-3">
-                <span className="text-magenta font-serif fs-7 tracking-wider">✦ GRIMORIO DE COTIZACIÓN ✦</span>
+                <span className="text-magenta font-serif fs-8 text-uppercase tracking-wider">
+                  ✦ RESUMEN DE COTIZACIÓN ✦
+                </span>
                 <h3 className="font-crest text-bone fs-5 mt-1">Presupuesto Estimado</h3>
               </div>
 

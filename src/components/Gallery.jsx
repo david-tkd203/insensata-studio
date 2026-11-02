@@ -44,25 +44,19 @@ export default function Gallery({ onSelectDesignForBooking }) {
           </div>
         </div>
 
-        {/* Gallery Grid - Editorial Artifacts */}
+        {/* Gallery Grid - Lookbook Editorial Gallery (No Boxy Card Containers) */}
         <div className="row g-4">
           {filteredItems.map((item) => (
             <div key={item.id} className="col-md-6 col-lg-4 col-xl-3">
-              <div className="gallery-artifact-card h-100 position-relative">
-                {/* 4 Corner Sigil Pins */}
-                <span className="gothic-corner-pin pin-tl">✦</span>
-                <span className="gothic-corner-pin pin-tr">♰</span>
-                <span className="gothic-corner-pin pin-bl">♰</span>
-                <span className="gothic-corner-pin pin-br">✦</span>
-
+              <div className="gallery-editorial-card h-100 position-relative">
                 {/* Media Container */}
-                <div className="artifact-media position-relative">
+                <div className="editorial-media position-relative rounded-2">
                   <img
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
                   />
-                  <div className="artifact-vignette" />
+                  <div className="editorial-vignette" />
 
                   {/* Top Badges */}
                   <div className="position-absolute top-0 start-0 m-3 z-3 d-flex flex-column gap-1">
@@ -98,8 +92,8 @@ export default function Gallery({ onSelectDesignForBooking }) {
                     <i className="bi bi-arrows-fullscreen fs-7"></i>
                   </button>
 
-                  {/* Editorial Sliding Drawer (reveals on hover) */}
-                  <div className="artifact-drawer">
+                  {/* Editorial Overlay Content */}
+                  <div className="editorial-drawer">
                     <div className="d-flex justify-content-between align-items-baseline mb-1">
                       <span className="text-magenta font-display fw-bold" style={{ fontSize: '0.72rem', letterSpacing: '0.08em' }}>
                         ✦ {item.technique || 'ARQUITECTURA GÓTICA'}
@@ -113,7 +107,7 @@ export default function Gallery({ onSelectDesignForBooking }) {
                       {item.title}
                     </h3>
 
-                    {/* Hidden on default, revealed smoothly on hover */}
+                    {/* Smooth Reveal Actions */}
                     <div className="artifact-actions">
                       <p className="text-bone-muted mb-2" style={{ fontSize: '0.78rem', lineHeight: '1.45' }}>
                         {item.description}
