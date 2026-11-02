@@ -68,7 +68,7 @@ ${charmsText}
       <div className="container py-4">
         {/* Section Header */}
         <div className="text-center mb-5">
-          <span className="badge-gothic px-3 py-1 mb-2">Diseñador Interactivo de Autor</span>
+          <span className="badge-gothic px-3 py-1 mb-2">Atelier Configurator</span>
           <h2 className="font-crest text-bone fw-bold display-6 mb-2">
             COTIZA TU <span className="text-magenta">SET RITUAL</span>
           </h2>
@@ -76,92 +76,170 @@ ${charmsText}
             <span className="runes-pulse">✦ ☾ ♰ ☽ ✦</span>
           </div>
           <p className="text-bone-muted mx-auto" style={{ maxWidth: '680px' }}>
-            Personaliza cada aspecto de tus futuras garras. Selecciona la estructura, largo, nivel de complejidad artística y joyería tridimensional para obtener un presupuesto exacto en vivo.
+            Forja la arquitectura de tus garras. Selecciona estructura, longitud, complejidad artística y joyería tridimensional. Cotización en tiempo real integrada al lienzo del atelier.
           </p>
         </div>
 
-        <div className="row g-4">
-          {/* Controls Column */}
+        <div className="row g-4 g-xl-5">
+          {/* Atelier Interactive Configurator (Canvas-Integrated, No Boxy Cards) */}
           <div className="col-lg-8">
-            {/* Step 1: Base Structure */}
-            <div className="mb-4">
-              <div className="d-flex align-items-center gap-2 mb-3">
-                <span className="badge-gothic">Paso 1</span>
-                <h4 className="font-crest text-bone fs-6 fw-bold mb-0">
-                  Selecciona la Estructura Base
-                </h4>
+            {/* STEP 1: ESTRUCTURA BASE - Integrated Horizontal Rail / Hairline Segmented Selector */}
+            <div className="mb-5">
+              <div className="d-flex align-items-center justify-content-between mb-3">
+                <div className="d-flex align-items-center gap-2">
+                  <span className="badge-gothic">Paso 01</span>
+                  <h4 className="font-crest text-bone fs-6 fw-bold mb-0">
+                    Estructura Base
+                  </h4>
+                </div>
+                <span className="text-silver fs-8 font-display d-none d-sm-inline">
+                  {selectedBase.name.split('/')[0].trim()}
+                </span>
               </div>
-              <div className="row g-3">
+
+              <div className="calc-base-rail row g-0">
                 {CALCULATOR_BASES.map((b) => {
                   const isSelected = selectedBase.id === b.id;
                   return (
-                    <div key={b.id} className="col-md-4">
-                      <div
-                        className={`calc-editorial-option ${isSelected ? 'active' : ''}`}
-                        onClick={() => setSelectedBase(b)}
-                        role="button"
-                        tabIndex={0}
-                        aria-pressed={isSelected}
-                      >
-                        <div>
-                          <div className="d-flex justify-content-between align-items-center mb-1">
-                            <span className="font-crest text-bone fw-bold fs-7">{b.name}</span>
-                            {isSelected ? (
-                              <i className="bi bi-check-circle-fill text-magenta fs-6"></i>
-                            ) : (
-                              <span className="text-bone-muted fs-8">♰</span>
-                            )}
-                          </div>
-                          <p className="text-bone-muted mb-2" style={{ fontSize: '0.75rem', lineHeight: '1.45' }}>
-                            {b.desc}
-                          </p>
-                        </div>
-                        <span className="text-magenta fw-bold fs-7 mt-2">
-                          ${b.basePrice.toLocaleString('es-AR')} ARS
-                        </span>
+                    <div
+                      key={b.id}
+                      className={`col-md-4 calc-base-segment ${isSelected ? 'active' : ''}`}
+                      onClick={() => setSelectedBase(b)}
+                      role="button"
+                      tabIndex={0}
+                      aria-pressed={isSelected}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          setSelectedBase(b);
+                        }
+                      }}
+                    >
+                      <div className="segment-laser-bar"></div>
+                      <div className="d-flex justify-content-between align-items-center mb-2">
+                        <span className="font-crest text-bone fw-bold fs-7">{b.name.split('/')[0].trim()}</span>
+                        {isSelected ? (
+                          <span className="text-magenta font-serif fs-7">✦</span>
+                        ) : (
+                          <span className="text-bone-muted fs-8">♰</span>
+                        )}
                       </div>
+                      <p className="text-bone-muted mb-2 fs-8" style={{ lineHeight: '1.45' }}>
+                        {b.desc}
+                      </p>
+                      <span className="text-magenta fw-bold fs-7 d-block mt-auto">
+                        ${b.basePrice.toLocaleString('es-AR')} ARS
+                      </span>
                     </div>
                   );
                 })}
               </div>
             </div>
 
-            {/* Step 2: Shape & Length */}
-            <div className="mb-4">
-              <div className="d-flex align-items-center gap-2 mb-3">
-                <span className="badge-gothic">Paso 2</span>
-                <h4 className="font-crest text-bone fs-6 fw-bold mb-0">
-                  Forma & Longitud de la Garra
-                </h4>
+            {/* STEP 2: FORMA & LONGITUD - Elegant Horizontal Pill / Rune Selector */}
+            <div className="mb-5">
+              <div className="d-flex align-items-center justify-content-between mb-3">
+                <div className="d-flex align-items-center gap-2">
+                  <span className="badge-gothic">Paso 02</span>
+                  <h4 className="font-crest text-bone fs-6 fw-bold mb-0">
+                    Forma & Longitud de la Garra
+                  </h4>
+                </div>
+                <span className="text-silver fs-8 font-display d-none d-sm-inline">
+                  {selectedShape.name}
+                </span>
               </div>
-              <div className="row g-3">
+
+              <div className="calc-shapes-track">
                 {CALCULATOR_SHAPES.map((s) => {
                   const isSelected = selectedShape.id === s.id;
                   return (
-                    <div key={s.id} className="col-md-4 col-sm-6">
-                      <div
-                        className={`calc-editorial-option ${isSelected ? 'active' : ''}`}
-                        onClick={() => setSelectedShape(s)}
-                        role="button"
-                        tabIndex={0}
-                        aria-pressed={isSelected}
-                      >
-                        <div>
-                          <div className="d-flex justify-content-between align-items-center mb-1">
-                            <span className="font-crest text-bone fw-bold fs-7">{s.name}</span>
-                            {isSelected ? (
-                              <i className="bi bi-check-circle-fill text-magenta fs-6"></i>
-                            ) : (
-                              <span className="text-bone-muted fs-8">🗡️</span>
-                            )}
+                    <div
+                      key={s.id}
+                      className={`calc-shape-pill ${isSelected ? 'active' : ''}`}
+                      onClick={() => setSelectedShape(s)}
+                      role="button"
+                      tabIndex={0}
+                      aria-pressed={isSelected}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          setSelectedShape(s);
+                        }
+                      }}
+                    >
+                      <span className="text-magenta fs-7">{isSelected ? '✦' : '✧'}</span>
+                      <span className="font-serif fs-7">{s.name}</span>
+                      <span className="pill-tag">
+                        {s.price === 0 ? 'Sin recargo' : `+ $${s.price.toLocaleString('es-AR')}`}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* STEP 3: NIVEL DE COMPLEJIDAD - Editorial Vertical Hairline Rows */}
+            <div className="mb-5">
+              <div className="d-flex align-items-center justify-content-between mb-3">
+                <div className="d-flex align-items-center gap-2">
+                  <span className="badge-gothic">Paso 03</span>
+                  <h4 className="font-crest text-bone fs-6 fw-bold mb-0">
+                    Nivel de Complejidad de Nail Art
+                  </h4>
+                </div>
+                <span className="text-silver fs-8 font-display d-none d-sm-inline">
+                  {selectedArt.name}
+                </span>
+              </div>
+
+              <div className="calc-art-list">
+                {CALCULATOR_ART_LEVELS.map((a, idx) => {
+                  const isSelected = selectedArt.id === a.id;
+                  const formattedIndex = String(idx + 1).padStart(2, '0');
+                  return (
+                    <div
+                      key={a.id}
+                      className={`calc-art-row ${isSelected ? 'active' : ''}`}
+                      onClick={() => setSelectedArt(a)}
+                      role="button"
+                      tabIndex={0}
+                      aria-pressed={isSelected}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          setSelectedArt(a);
+                        }
+                      }}
+                    >
+                      <div className="art-laser-bar"></div>
+                      <div className="d-flex align-items-start justify-content-between gap-3">
+                        <div className="d-flex align-items-start gap-3">
+                          <span className="ghost-numeral flex-shrink-0">
+                            {formattedIndex}
+                          </span>
+                          <div>
+                            <div className="d-flex align-items-center gap-2 mb-1">
+                              <span className="font-crest text-bone fw-bold fs-6">
+                                {a.name}
+                              </span>
+                              {isSelected && (
+                                <span className="badge-gothic" style={{ fontSize: '0.65rem' }}>
+                                  Seleccionado
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-bone-muted mb-0 fs-7" style={{ lineHeight: '1.5' }}>
+                              {a.desc}
+                            </p>
                           </div>
-                          <span className="badge-silver d-inline-block mb-2" style={{ fontSize: '0.68rem' }}>
-                            {s.tag}
+                        </div>
+
+                        <div className="text-end flex-shrink-0">
+                          <span className="text-magenta fw-bold fs-6 d-block">
+                            {a.price === 0 ? 'Incluido' : `+ $${a.price.toLocaleString('es-AR')}`}
+                          </span>
+                          <span className="text-silver fs-8">
+                            {isSelected ? '✦ ACTIVO' : '♰'}
                           </span>
                         </div>
-                        <span className="text-silver fw-semibold fs-7 mt-2">
-                          {s.price === 0 ? 'Sin recargo' : `+ $${s.price.toLocaleString('es-AR')} ARS`}
-                        </span>
                       </div>
                     </div>
                   );
@@ -169,78 +247,46 @@ ${charmsText}
               </div>
             </div>
 
-            {/* Step 3: Nail Art Complexity */}
+            {/* STEP 4: JOYERÍA & CHARMS - Minimalist 2-Column Checklist Integrated directly on Canvas */}
             <div className="mb-4">
-              <div className="d-flex align-items-center gap-2 mb-3">
-                <span className="badge-gothic">Paso 3</span>
-                <h4 className="font-crest text-bone fs-6 fw-bold mb-0">
-                  Nivel de Complejidad de Nail Art
-                </h4>
+              <div className="d-flex align-items-center justify-content-between mb-3">
+                <div className="d-flex align-items-center gap-2">
+                  <span className="badge-gothic">Paso 04</span>
+                  <h4 className="font-crest text-bone fs-6 fw-bold mb-0">
+                    Charms, Piercings & Joyería 3D (Opcionales)
+                  </h4>
+                </div>
+                <span className="text-silver fs-8 font-display">
+                  {activeCharmObjects.length} de {CALCULATOR_CHARMS.length} agregados
+                </span>
               </div>
-              <div className="row g-3">
-                {CALCULATOR_ART_LEVELS.map((a) => {
-                  const isSelected = selectedArt.id === a.id;
-                  return (
-                    <div key={a.id} className="col-md-6">
-                      <div
-                        className={`calc-editorial-option ${isSelected ? 'active' : ''}`}
-                        onClick={() => setSelectedArt(a)}
-                        role="button"
-                        tabIndex={0}
-                        aria-pressed={isSelected}
-                      >
-                        <div>
-                          <div className="d-flex justify-content-between align-items-center mb-1">
-                            <span className="font-crest text-bone fw-bold fs-7">{a.name}</span>
-                            {isSelected ? (
-                              <i className="bi bi-check-circle-fill text-magenta fs-6"></i>
-                            ) : (
-                              <span className="text-bone-muted fs-8">✦</span>
-                            )}
-                          </div>
-                          <p className="text-bone-muted mb-2" style={{ fontSize: '0.78rem', lineHeight: '1.45' }}>
-                            {a.desc}
-                          </p>
-                        </div>
-                        <span className="text-magenta fw-bold fs-7 mt-2">
-                          {a.price === 0 ? 'Incluido en base' : `+ $${a.price.toLocaleString('es-AR')} ARS`}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
 
-            {/* Step 4: Charms & Piercings */}
-            <div className="mb-3">
-              <div className="d-flex align-items-center gap-2 mb-3">
-                <span className="badge-gothic">Paso 4</span>
-                <h4 className="font-crest text-bone fs-6 fw-bold mb-0">
-                  Charms, Piercings & Joyería 3D (Opcionales)
-                </h4>
-              </div>
               <div className="row g-2">
                 {CALCULATOR_CHARMS.map((c) => {
                   const isChecked = selectedCharms.includes(c.id);
                   return (
                     <div key={c.id} className="col-md-6">
                       <div
-                        className={`calc-editorial-charm ${isChecked ? 'active' : ''}`}
+                        className={`calc-charm-item ${isChecked ? 'active' : ''}`}
                         onClick={() => handleToggleCharm(c.id)}
                         role="checkbox"
                         aria-checked={isChecked}
                         tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            handleToggleCharm(c.id);
+                          }
+                        }}
                       >
                         <div className="d-flex align-items-center gap-2">
-                          <i
-                            className={`bi ${
-                              isChecked ? 'bi-check-square-fill text-magenta' : 'bi-square text-bone-muted'
-                            } fs-6`}
-                          ></i>
-                          <span className="text-silver fs-7">{c.name}</span>
+                          <span className="calc-charm-rune">
+                            {isChecked ? '✦' : '✧'}
+                          </span>
+                          <span className="text-silver fs-7">
+                            {c.name}
+                          </span>
                         </div>
-                        <span className="text-magenta fw-bold fs-7">
+                        <span className="text-magenta fw-bold fs-7 flex-shrink-0 ms-2">
                           +${c.price.toLocaleString('es-AR')}
                         </span>
                       </div>
@@ -251,25 +297,20 @@ ${charmsText}
             </div>
           </div>
 
-          {/* Sticky Live Total Summary Column - Grimorio de Cotización (Architectural Ledger) */}
+          {/* Sticky Live Total Summary Column - Architectural Haute Couture Ledger (No Heavy Box Border) */}
           <div className="col-lg-4">
-            <div
-              className="calc-editorial-ledger p-4 position-sticky"
-              style={{
-                top: '100px',
-              }}
-            >
+            <div className="calc-atelier-ledger">
               <div className="text-center mb-3">
                 <span className="text-magenta font-serif fs-8 text-uppercase tracking-wider">
                   ✦ RESUMEN DE COTIZACIÓN ✦
                 </span>
-                <h3 className="font-crest text-bone fs-5 mt-1">Presupuesto Estimado</h3>
+                <h3 className="font-crest text-bone fs-5 mt-1">Presupuesto Ritual</h3>
               </div>
 
               {/* Price Display */}
-              <div className="text-center my-3 py-3 border-top border-bottom border-dark">
+              <div className="text-center my-3 py-3 border-top border-bottom border-dark border-opacity-75">
                 <span className="text-bone-muted d-block fs-8 tracking-wider mb-1">TOTAL ESTIMADO EN ARS</span>
-                <div className="font-crest text-magenta fw-bold display-6 glow-magenta-text">
+                <div className="font-crest text-bone fw-bold display-6 glow-magenta-text">
                   ${calculatedTotal.toLocaleString('es-AR')}
                 </div>
                 <small className="text-bone-muted d-block mt-1" style={{ fontSize: '0.72rem' }}>
@@ -281,7 +322,7 @@ ${charmsText}
               <div className="mb-4">
                 <div className="d-flex justify-content-between mb-2 fs-7 text-silver">
                   <span>Base:</span>
-                  <span className="text-bone fw-semibold">{selectedBase.name}</span>
+                  <span className="text-bone fw-semibold">{selectedBase.name.split('/')[0].trim()}</span>
                 </div>
                 <div className="d-flex justify-content-between mb-2 fs-7 text-silver">
                   <span>Forma & Largo:</span>
@@ -306,7 +347,7 @@ ${charmsText}
                 <button
                   type="button"
                   onClick={handleSendToWhatsApp}
-                  className="btn-gothic-primary"
+                  className="btn-gothic-primary w-100"
                 >
                   <i className="bi bi-whatsapp text-white"></i>
                   Pedir este Set por WhatsApp
@@ -322,7 +363,7 @@ ${charmsText}
                       charms: activeCharmObjects.map((c) => c.name),
                     })
                   }
-                  className="btn-gothic-outline btn-gothic-sm"
+                  className="btn-gothic-outline btn-gothic-sm w-100"
                 >
                   <i className="bi bi-calendar2-check text-magenta"></i>
                   Agendar en la Web con estos Datos

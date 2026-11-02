@@ -26,7 +26,7 @@ export default function Gallery({ onSelectDesignForBooking }) {
             <span className="runes-pulse">✦ ☾ ♰ ☽ ✦</span>
           </div>
           <p className="text-bone-muted mx-auto" style={{ maxWidth: '680px' }}>
-            Explora nuestras creaciones más icónicas. Posa el cursor sobre cada obra para revelar sus especificaciones de alta ingeniería o solicítala directamente para tu próxima sesión ritual.
+            Explora nuestras creaciones más icónicas. Obras escultóricas forjadas para desafiar lo convencional. Posa el cursor sobre cada fotografía para ampliarla o reclamar el diseño directamente.
           </p>
 
           {/* Filter Pills */}
@@ -44,106 +44,115 @@ export default function Gallery({ onSelectDesignForBooking }) {
           </div>
         </div>
 
-        {/* Gallery Grid - Lookbook Editorial Gallery (No Boxy Card Containers) */}
-        <div className="row g-4">
+        {/* Gallery Grid - Pure Photography Hero with Integrated Canvas Caption (No Boxy Card Containers) */}
+        <div className="row g-4 g-xl-5">
           {filteredItems.map((item) => (
-            <div key={item.id} className="col-md-6 col-lg-4 col-xl-3">
-              <div className="gallery-editorial-card h-100 position-relative">
-                {/* Media Container */}
-                <div className="editorial-media position-relative rounded-2">
+            <div key={item.id} className="col-12 col-sm-6 col-lg-4 col-xl-3">
+              <div className="atelier-gallery-item h-100 d-flex flex-column justify-content-between">
+                {/* 1. Unblocked Hero Photography Frame */}
+                <div
+                  className="atelier-image-frame position-relative"
+                  onClick={() => setSelectedImageModal(item)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Ver detalles de ${item.title}`}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      setSelectedImageModal(item);
+                    }
+                  }}
+                >
                   <img
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
+                    className="atelier-gallery-img"
                   />
-                  <div className="editorial-vignette" />
 
-                  {/* Top Badges */}
-                  <div className="position-absolute top-0 start-0 m-3 z-3 d-flex flex-column gap-1">
-                    <span className="badge-gothic shadow-sm">{item.badge}</span>
-                    <span
-                      className="badge-silver"
-                      style={{ fontSize: '0.66rem', backdropFilter: 'blur(6px)', background: 'rgba(10,7,14,0.7)' }}
+                  {/* Single Discreet Corner Hallmark Badge */}
+                  <span className="atelier-badge-corner">
+                    {item.badge}
+                  </span>
+
+                  {/* Clean Hover Overlay with Elegant Centered Actions */}
+                  <div className="atelier-image-hover-overlay d-flex flex-column align-items-center justify-content-center gap-3">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedImageModal(item);
+                      }}
+                      className="atelier-hover-action-circle"
+                      title="Ampliar obra"
+                      aria-label={`Ver zoom de ${item.title}`}
                     >
+                      <i className="bi bi-arrows-fullscreen"></i>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectDesignForBooking(item.title);
+                      }}
+                      className="atelier-hover-action-pill"
+                    >
+                      <i className="bi bi-droplet-half text-magenta"></i>
+                      <span>Reclamar Ritual</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* 2. Integrated Caption BELOW the Image (Canvas-integrated, zero box background) */}
+                <div className="atelier-caption pt-3">
+                  <div className="d-flex align-items-center justify-content-between mb-1">
+                    <span className="atelier-category-tag">
+                      <span className="text-magenta me-1">✦</span>
                       {item.categoryLabel}
+                    </span>
+                    <span className="atelier-length-tag">
+                      {item.length ? item.length.split('/')[0].trim() : ''}
                     </span>
                   </div>
 
-                  {/* Quick Expand Button */}
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedImageModal(item);
+                  <h3
+                    className="atelier-caption-title font-crest text-bone fs-6 fw-bold mb-1"
+                    onClick={() => setSelectedImageModal(item)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        setSelectedImageModal(item);
+                      }
                     }}
-                    className="position-absolute top-0 end-0 m-3 z-3 border-0 rounded-circle d-flex align-items-center justify-content-center text-white"
-                    style={{
-                      width: '34px',
-                      height: '34px',
-                      background: 'rgba(14, 10, 18, 0.75)',
-                      backdropFilter: 'blur(8px)',
-                      border: '1px solid rgba(255, 0, 127, 0.45)',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                    }}
-                    title="Ampliar obra"
-                    aria-label={`Ver zoom de ${item.title}`}
                   >
-                    <i className="bi bi-arrows-fullscreen fs-7"></i>
-                  </button>
+                    {item.title}
+                  </h3>
 
-                  {/* Editorial Overlay Content */}
-                  <div className="editorial-drawer">
-                    <div className="d-flex justify-content-between align-items-baseline mb-1">
-                      <span className="text-magenta font-display fw-bold" style={{ fontSize: '0.72rem', letterSpacing: '0.08em' }}>
-                        ✦ {item.technique || 'ARQUITECTURA GÓTICA'}
-                      </span>
-                      <span className="text-silver" style={{ fontSize: '0.72rem' }}>
-                        {item.length}
-                      </span>
-                    </div>
+                  <p className="atelier-caption-spec text-bone-muted mb-2">
+                    {item.technique ? item.technique.split('+').slice(0, 2).join(' • ') : 'Técnica de Autor'}
+                  </p>
 
-                    <h3 className="font-crest text-bone fs-6 fw-bold mb-2 text-shadow-sm">
-                      {item.title}
-                    </h3>
+                  {/* Subtle Bottom Action Line */}
+                  <div className="atelier-caption-action d-flex align-items-center justify-content-between pt-2">
+                    <button
+                      type="button"
+                      onClick={() => onSelectDesignForBooking(item.title)}
+                      className="atelier-action-link"
+                    >
+                      <span>Agendar este diseño</span>
+                      <i className="bi bi-arrow-right text-magenta"></i>
+                    </button>
 
-                    {/* Smooth Reveal Actions */}
-                    <div className="artifact-actions">
-                      <p className="text-bone-muted mb-2" style={{ fontSize: '0.78rem', lineHeight: '1.45' }}>
-                        {item.description}
-                      </p>
-
-                      <div className="d-flex flex-wrap gap-1 mb-3">
-                        {item.tags.map((tag, idx) => (
-                          <span
-                            key={idx}
-                            className="badge-silver"
-                            style={{ fontSize: '0.65rem', background: 'rgba(255, 0, 127, 0.08)' }}
-                          >
-                            #{tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="d-flex gap-2">
-                        <button
-                          type="button"
-                          onClick={() => onSelectDesignForBooking(item.title)}
-                          className="btn-gothic-primary btn-gothic-sm w-100"
-                        >
-                          <i className="bi bi-droplet-half text-white"></i>
-                          Reclamar este Ritual
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setSelectedImageModal(item)}
-                          className="btn-gothic-outline btn-gothic-sm px-3"
-                          title="Detalles y Zoom"
-                        >
-                          <i className="bi bi-eye"></i>
-                        </button>
-                      </div>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedImageModal(item)}
+                      className="atelier-zoom-btn"
+                      title="Detalles y Zoom"
+                      aria-label="Ver detalles"
+                    >
+                      <i className="bi bi-eye"></i>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -156,14 +165,14 @@ export default function Gallery({ onSelectDesignForBooking }) {
           <div
             className="modal fade show d-block"
             tabIndex={-1}
-            style={{ backgroundColor: 'rgba(7, 5, 8, 0.94)', backdropFilter: 'blur(12px)', zIndex: 1060 }}
+            style={{ backgroundColor: 'rgba(7, 5, 8, 0.94)', backdropFilter: 'blur(16px)', zIndex: 1060 }}
             onClick={() => setSelectedImageModal(null)}
           >
             <div
               className="modal-dialog modal-dialog-centered modal-lg"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="modal-content gothic-modal text-bone p-2">
+              <div className="modal-content gothic-modal text-bone p-3">
                 <div className="modal-header border-0 pb-2">
                   <div>
                     <span className="badge-gothic mb-1">{selectedImageModal.badge}</span>
@@ -179,13 +188,13 @@ export default function Gallery({ onSelectDesignForBooking }) {
                   ></button>
                 </div>
 
-                <div className="modal-body text-center p-3">
+                <div className="modal-body p-3">
                   <div
-                    className="rounded-3 overflow-hidden mb-3 mx-auto"
+                    className="rounded-2 overflow-hidden mb-3 mx-auto"
                     style={{
                       maxHeight: '480px',
-                      border: '1px solid rgba(255, 0, 127, 0.4)',
-                      boxShadow: '0 0 35px rgba(255, 0, 127, 0.25)',
+                      border: '1px solid rgba(255, 0, 127, 0.35)',
+                      boxShadow: '0 0 35px rgba(255, 0, 127, 0.2)',
                     }}
                   >
                     <img
@@ -195,7 +204,7 @@ export default function Gallery({ onSelectDesignForBooking }) {
                     />
                   </div>
 
-                  <div className="text-start p-2">
+                  <div className="text-start pt-2">
                     <div className="row g-2 mb-3">
                       <div className="col-sm-6">
                         <div
