@@ -23,10 +23,10 @@ export default function Gallery({ onSelectDesignForBooking }) {
             GALERÍA <span className="text-magenta">OBSCURA</span>
           </h2>
           <div className="gothic-divider">
-            <span>✦ ☾ ♰ ☽ ✦</span>
+            <span className="runes-pulse">✦ ☾ ♰ ☽ ✦</span>
           </div>
           <p className="text-bone-muted mx-auto" style={{ maxWidth: '680px' }}>
-            Explora nuestras creaciones más icónicas. Haz clic en cualquier diseño para ampliar los detalles o solicítalo directamente para tu próxima sesión ritual.
+            Explora nuestras creaciones más icónicas. Posa el cursor sobre cada obra para revelar sus especificaciones de alta ingeniería o solicítala directamente para tu próxima sesión ritual.
           </p>
 
           {/* Filter Pills */}
@@ -44,88 +44,113 @@ export default function Gallery({ onSelectDesignForBooking }) {
           </div>
         </div>
 
-        {/* Gallery Grid */}
+        {/* Gallery Grid - Editorial Artifacts */}
         <div className="row g-4">
           {filteredItems.map((item) => (
             <div key={item.id} className="col-md-6 col-lg-4 col-xl-3">
-              <div className="gothic-card h-100 d-flex flex-column">
-                {/* Image Container with Zoom Trigger */}
-                <div
-                  className="position-relative overflow-hidden cursor-pointer"
-                  style={{ height: '260px', background: '#0a070e' }}
-                  onClick={() => setSelectedImageModal(item)}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Ver zoom de ${item.title}`}
-                >
+              <div className="gallery-artifact-card h-100 position-relative">
+                {/* 4 Corner Sigil Pins */}
+                <span className="gothic-corner-pin pin-tl">✦</span>
+                <span className="gothic-corner-pin pin-tr">♰</span>
+                <span className="gothic-corner-pin pin-bl">♰</span>
+                <span className="gothic-corner-pin pin-br">✦</span>
+
+                {/* Media Container */}
+                <div className="artifact-media position-relative">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-100 h-100 object-fit-cover transition-transform duration-500"
-                    style={{
-                      transition: 'transform 0.5s ease',
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                    loading="lazy"
                   />
+                  <div className="artifact-vignette" />
 
-                  {/* Badge */}
-                  <div className="position-absolute top-0 start-0 m-3">
-                    <span className="badge-gothic">{item.badge}</span>
-                  </div>
-
-                  {/* Quick Expand Icon */}
-                  <div
-                    className="position-absolute bottom-0 end-0 m-2 rounded-circle d-flex align-items-center justify-content-center text-white"
-                    style={{
-                      width: '32px',
-                      height: '32px',
-                      background: 'rgba(14, 10, 18, 0.75)',
-                      backdropFilter: 'blur(4px)',
-                      border: '1px solid rgba(255, 0, 127, 0.4)',
-                    }}
-                  >
-                    <i className="bi bi-arrows-fullscreen fs-7"></i>
-                  </div>
-                </div>
-
-                {/* Card Content */}
-                <div className="p-3 d-flex flex-column flex-grow-1">
-                  <div className="d-flex justify-content-between align-items-baseline mb-1">
+                  {/* Top Badges */}
+                  <div className="position-absolute top-0 start-0 m-3 z-3 d-flex flex-column gap-1">
+                    <span className="badge-gothic shadow-sm">{item.badge}</span>
                     <span
-                      className="text-magenta font-display fw-bold"
-                      style={{ fontSize: '0.72rem', letterSpacing: '0.06em' }}
+                      className="badge-silver"
+                      style={{ fontSize: '0.66rem', backdropFilter: 'blur(6px)', background: 'rgba(10,7,14,0.7)' }}
                     >
                       {item.categoryLabel}
                     </span>
-                    <span className="text-bone-muted" style={{ fontSize: '0.72rem' }}>
-                      {item.length}
-                    </span>
                   </div>
 
-                  <h3 className="font-serif text-bone fs-6 fw-bold mb-2">{item.title}</h3>
-
-                  <p className="text-bone-muted mb-3 flex-grow-1" style={{ fontSize: '0.8rem', lineHeight: '1.5' }}>
-                    {item.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="d-flex flex-wrap gap-1 mb-3">
-                    {item.tags.map((tag, idx) => (
-                      <span key={idx} className="badge-silver" style={{ fontSize: '0.68rem' }}>
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action CTA */}
+                  {/* Quick Expand Button */}
                   <button
-                    onClick={() => onSelectDesignForBooking(item.title)}
-                    className="btn-gothic-outline btn-gothic-sm w-100"
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedImageModal(item);
+                    }}
+                    className="position-absolute top-0 end-0 m-3 z-3 border-0 rounded-circle d-flex align-items-center justify-content-center text-white"
+                    style={{
+                      width: '34px',
+                      height: '34px',
+                      background: 'rgba(14, 10, 18, 0.75)',
+                      backdropFilter: 'blur(8px)',
+                      border: '1px solid rgba(255, 0, 127, 0.45)',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                    }}
+                    title="Ampliar obra"
+                    aria-label={`Ver zoom de ${item.title}`}
                   >
-                    <i className="bi bi-droplet-half text-magenta"></i>
-                    Quiero este Diseño
+                    <i className="bi bi-arrows-fullscreen fs-7"></i>
                   </button>
+
+                  {/* Editorial Sliding Drawer (reveals on hover) */}
+                  <div className="artifact-drawer">
+                    <div className="d-flex justify-content-between align-items-baseline mb-1">
+                      <span className="text-magenta font-display fw-bold" style={{ fontSize: '0.72rem', letterSpacing: '0.08em' }}>
+                        ✦ {item.technique || 'ARQUITECTURA GÓTICA'}
+                      </span>
+                      <span className="text-silver" style={{ fontSize: '0.72rem' }}>
+                        {item.length}
+                      </span>
+                    </div>
+
+                    <h3 className="font-crest text-bone fs-6 fw-bold mb-2 text-shadow-sm">
+                      {item.title}
+                    </h3>
+
+                    {/* Hidden on default, revealed smoothly on hover */}
+                    <div className="artifact-actions">
+                      <p className="text-bone-muted mb-2" style={{ fontSize: '0.78rem', lineHeight: '1.45' }}>
+                        {item.description}
+                      </p>
+
+                      <div className="d-flex flex-wrap gap-1 mb-3">
+                        {item.tags.map((tag, idx) => (
+                          <span
+                            key={idx}
+                            className="badge-silver"
+                            style={{ fontSize: '0.65rem', background: 'rgba(255, 0, 127, 0.08)' }}
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="d-flex gap-2">
+                        <button
+                          type="button"
+                          onClick={() => onSelectDesignForBooking(item.title)}
+                          className="btn-gothic-primary btn-gothic-sm w-100"
+                        >
+                          <i className="bi bi-droplet-half text-white"></i>
+                          Reclamar este Ritual
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedImageModal(item)}
+                          className="btn-gothic-outline btn-gothic-sm px-3"
+                          title="Detalles y Zoom"
+                        >
+                          <i className="bi bi-eye"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -137,17 +162,17 @@ export default function Gallery({ onSelectDesignForBooking }) {
           <div
             className="modal fade show d-block"
             tabIndex={-1}
-            style={{ backgroundColor: 'rgba(7, 5, 8, 0.92)', backdropFilter: 'blur(8px)', zIndex: 1060 }}
+            style={{ backgroundColor: 'rgba(7, 5, 8, 0.94)', backdropFilter: 'blur(12px)', zIndex: 1060 }}
             onClick={() => setSelectedImageModal(null)}
           >
             <div
               className="modal-dialog modal-dialog-centered modal-lg"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="modal-content gothic-modal text-bone">
-                <div className="modal-header border-0 pb-0">
+              <div className="modal-content gothic-modal text-bone p-2">
+                <div className="modal-header border-0 pb-2">
                   <div>
-                    <span className="badge-gothic">{selectedImageModal.badge}</span>
+                    <span className="badge-gothic mb-1">{selectedImageModal.badge}</span>
                     <h4 className="font-crest text-bone fs-5 mt-1 mb-0">
                       {selectedImageModal.title}
                     </h4>
@@ -162,11 +187,11 @@ export default function Gallery({ onSelectDesignForBooking }) {
 
                 <div className="modal-body text-center p-3">
                   <div
-                    className="rounded overflow-hidden mb-3 mx-auto"
+                    className="rounded-3 overflow-hidden mb-3 mx-auto"
                     style={{
                       maxHeight: '480px',
-                      border: '1px solid rgba(255, 0, 127, 0.3)',
-                      boxShadow: '0 0 25px rgba(255, 0, 127, 0.2)',
+                      border: '1px solid rgba(255, 0, 127, 0.4)',
+                      boxShadow: '0 0 35px rgba(255, 0, 127, 0.25)',
                     }}
                   >
                     <img
@@ -177,23 +202,40 @@ export default function Gallery({ onSelectDesignForBooking }) {
                   </div>
 
                   <div className="text-start p-2">
-                    <p className="text-silver mb-2">
-                      <strong className="text-magenta">Técnica: </strong>
-                      {selectedImageModal.technique}
+                    <div className="row g-2 mb-3">
+                      <div className="col-sm-6">
+                        <div
+                          className="p-2 rounded"
+                          style={{ background: 'rgba(25, 16, 36, 0.7)', border: '1px solid rgba(255, 0, 127, 0.15)' }}
+                        >
+                          <small className="text-magenta d-block font-serif fs-8 fw-bold">TÉCNICA DE AUTOR</small>
+                          <span className="text-silver fs-7">{selectedImageModal.technique}</span>
+                        </div>
+                      </div>
+                      <div className="col-sm-6">
+                        <div
+                          className="p-2 rounded"
+                          style={{ background: 'rgba(25, 16, 36, 0.7)', border: '1px solid rgba(255, 0, 127, 0.15)' }}
+                        >
+                          <small className="text-magenta d-block font-serif fs-8 fw-bold">LARGO SUGERIDO</small>
+                          <span className="text-silver fs-7">{selectedImageModal.length}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-bone-muted mb-3 fs-7" style={{ lineHeight: '1.6' }}>
+                      {selectedImageModal.description}
                     </p>
-                    <p className="text-silver mb-2">
-                      <strong className="text-magenta">Largo sugerido: </strong>
-                      {selectedImageModal.length}
-                    </p>
-                    <p className="text-bone-muted mb-3">{selectedImageModal.description}</p>
+
                     <div className="d-flex flex-wrap gap-1 mb-4">
                       {selectedImageModal.tags.map((t, i) => (
-                        <span key={i} className="badge-silver">
+                        <span key={i} className="badge-silver" style={{ fontSize: '0.72rem' }}>
                           #{t}
                         </span>
                       ))}
                     </div>
-                    <div className="d-flex justify-content-end gap-2">
+
+                    <div className="d-flex justify-content-end gap-2 pt-2 border-top border-dark">
                       <button
                         className="btn-gothic-outline btn-gothic-sm"
                         onClick={() => setSelectedImageModal(null)}
@@ -209,7 +251,7 @@ export default function Gallery({ onSelectDesignForBooking }) {
                         }}
                       >
                         <i className="bi bi-calendar2-check"></i>
-                        Agendar con este diseño
+                        Agendar con este Diseño
                       </button>
                     </div>
                   </div>

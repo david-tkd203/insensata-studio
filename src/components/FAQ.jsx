@@ -21,7 +21,7 @@ export default function FAQ() {
             PREGUNTAS <span className="text-magenta">FRECUENTES</span>
           </h2>
           <div className="gothic-divider">
-            <span>✦ ☾ ♰ ☽ ✦</span>
+            <span className="runes-pulse">✦ ☾ ♰ ☽ ✦</span>
           </div>
           <p className="text-bone-muted mx-auto" style={{ maxWidth: '650px' }}>
             Todo lo que necesitas saber antes de entregarte a la experiencia Insensata.

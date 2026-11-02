@@ -140,36 +140,430 @@ body {
   border: 1px solid rgba(255, 0, 127, 0.15);
 }
 
-/* Gothic Luxury Cards */
+/* Gothic Luxury Cards & Bespoke Reliquary Geometry */
 .gothic-card {
   background: rgba(20, 14, 27, 0.82);
-  border: 1px solid rgba(201, 194, 204, 0.12);
-  border-radius: 8px;
+  border: 1px solid rgba(201, 194, 204, 0.14);
+  border-radius: 10px;
   position: relative;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .gothic-card::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
+  left: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 0, 127, 0.6), transparent);
+  background: linear-gradient(90deg, transparent, var(--neon-magenta), transparent);
+  transition: left 0.6s ease;
+  z-index: 2;
+}
+
+.gothic-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 0, 127, 0.18), transparent 70%);
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .gothic-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 0, 127, 0.38);
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 0, 127, 0.15);
+  transform: translateY(-6px);
+  border-color: rgba(255, 0, 127, 0.5);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.85), 0 0 28px rgba(255, 0, 127, 0.22);
 }
 
 .gothic-card:hover::before {
+  left: 100%;
+}
+
+.gothic-card:hover::after {
   opacity: 1;
+}
+
+/* ============================================================
+   BESPOKE HAUTE-COUTURE GOTHIC ARCHITECTURAL SURFACES (ANTI-GENERIC)
+   ============================================================ */
+
+/* 1. Gothic Reliquary (Relicario del Atelier) - High-Fashion Asymmetric Geometry */
+.gothic-reliquary-card {
+  position: relative;
+  background: linear-gradient(165deg, rgba(26, 16, 35, 0.94) 0%, rgba(13, 9, 18, 0.98) 100%);
+  border: 1px solid rgba(255, 0, 127, 0.2);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.gothic-reliquary-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 13px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 0, 127, 0.4) 0%, transparent 40%, rgba(133, 8, 46, 0.4) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.gothic-reliquary-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  border-color: rgba(255, 0, 127, 0.65);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 0, 127, 0.3), inset 0 0 25px rgba(133, 8, 46, 0.2);
+}
+
+.gothic-reliquary-card:hover::before {
+  opacity: 1;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 127, 0.7));
+}
+
+/* 2. Gothic Cathedral Lancet Arch (Ventana Ojival Sagrada) */
+.gothic-arch-card {
+  position: relative;
+  border-radius: 110px 110px 14px 14px;
+  background: linear-gradient(180deg, rgba(30, 18, 40, 0.9) 0%, rgba(13, 9, 17, 0.98) 100%);
+  border: 1px solid rgba(201, 194, 204, 0.18);
+  padding: 2.25rem 1.75rem 1.75rem 1.75rem;
+  overflow: hidden;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75);
+}
+
+.gothic-arch-card .arch-keystone {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--neon-magenta);
+  font-size: 1.1rem;
+  text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+  transition: transform 0.4s ease, color 0.4s ease, text-shadow 0.4s ease;
+  z-index: 3;
+}
+
+.gothic-arch-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 0, 127, 0.25) 0%, transparent 70%);
+  opacity: 0.3;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.gothic-arch-card:hover {
+  transform: translateY(-8px);
+  background: linear-gradient(180deg, rgba(60, 18, 45, 0.95) 0%, rgba(18, 10, 24, 0.98) 100%);
+  border-color: rgba(255, 0, 127, 0.6);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.92), 0 0 35px rgba(255, 0, 127, 0.35);
+}
+
+.gothic-arch-card:hover .arch-keystone {
+  transform: translateX(-50%) scale(1.25) rotate(180deg);
+  text-shadow: 0 0 18px rgba(255, 0, 127, 0.9), 0 0 30px #ff007f;
+}
+
+.gothic-arch-card:hover::after {
+  opacity: 0.85;
+}
+
+/* 3. Gothic Talisman Badges (Talismanes de Autor - Chamfered Stiletto Cuts) */
+.gothic-talisman-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(26, 16, 34, 0.85) 0%, rgba(13, 9, 17, 0.92) 100%);
+  border: 1px solid rgba(201, 194, 204, 0.16);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.gothic-talisman-card .talisman-sigil {
+  font-size: 1.4rem;
+  color: var(--neon-magenta);
+  transition: transform 0.4s ease, filter 0.4s ease;
+  display: inline-block;
+}
+
+.gothic-talisman-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: var(--neon-magenta);
+  background: linear-gradient(135deg, rgba(38, 18, 48, 0.95) 0%, rgba(18, 11, 24, 0.98) 100%);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 0, 127, 0.3);
+}
+
+.gothic-talisman-card:hover .talisman-sigil {
+  transform: scale(1.2) rotate(8deg);
+  filter: drop-shadow(0 0 10px var(--neon-magenta));
+}
+
+/* 4. Gothic Dark Mirror (Espejo Obscuro del Aquelarre) */
+.gothic-mirror-card {
+  position: relative;
+  border-radius: 70px 70px 14px 14px;
+  background: linear-gradient(170deg, rgba(28, 18, 38, 0.9) 0%, rgba(12, 8, 16, 0.97) 100%);
+  border: 1px solid rgba(255, 0, 127, 0.22);
+  padding: 2.25rem 1.75rem 1.75rem 1.75rem;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+}
+
+.gothic-mirror-card .mirror-quote-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+  color: rgba(255, 0, 127, 0.3);
+  font-family: var(--font-gothic-crest);
+  transition: all 0.4s ease;
+}
+
+.gothic-mirror-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--neon-magenta);
+  background: linear-gradient(170deg, rgba(42, 19, 52, 0.96) 0%, rgba(16, 10, 22, 0.99) 100%);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 0, 127, 0.35);
+}
+
+.gothic-mirror-card:hover .mirror-quote-icon {
+  color: var(--neon-magenta);
+  transform: scale(1.15) translateY(-2px);
+  filter: drop-shadow(0 0 12px rgba(255, 0, 127, 0.8));
+}
+
+/* 5. Gothic Sanctum Medical-Grade Bio Card */
+.gothic-sanctum-card {
+  position: relative;
+  border-radius: 12px;
+  background: linear-gradient(150deg, rgba(22, 15, 30, 0.9) 0%, rgba(11, 7, 15, 0.97) 100%);
+  border: 1px solid rgba(201, 194, 204, 0.16);
+  padding: 1.75rem 1.5rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.gothic-sanctum-card .sanctum-orb {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 0, 127, 0.25) 0%, rgba(14, 10, 18, 0.8) 70%);
+  border: 1px solid rgba(255, 0, 127, 0.45);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.gothic-sanctum-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 0, 127, 0.65);
+  background: linear-gradient(150deg, rgba(35, 17, 46, 0.95) 0%, rgba(15, 9, 21, 0.98) 100%);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.88), 0 0 30px rgba(255, 0, 127, 0.25);
+}
+
+.gothic-sanctum-card:hover .sanctum-orb {
+  transform: scale(1.15) rotate(15deg);
+  border-color: #00f3ff;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.5), 0 0 30px rgba(255, 0, 127, 0.4);
+}
+
+/* 6. Corner Filigree Pins for Couture Cards */
+.gothic-corner-pin {
+  position: absolute;
+  color: rgba(255, 0, 127, 0.4);
+  font-size: 0.72rem;
+  line-height: 1;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  z-index: 3;
+}
+
+.gothic-corner-pin.pin-tl { top: 8px; left: 8px; }
+.gothic-corner-pin.pin-tr { top: 8px; right: 8px; }
+.gothic-corner-pin.pin-bl { bottom: 8px; left: 8px; }
+.gothic-corner-pin.pin-br { bottom: 8px; right: 8px; }
+
+.gothic-reliquary-card:hover .gothic-corner-pin,
+.gallery-artifact-card:hover .gothic-corner-pin {
+  color: var(--neon-magenta);
+  text-shadow: 0 0 10px var(--neon-magenta);
+  transform: scale(1.3) rotate(45deg);
+}
+
+/* 7. Gallery Editorial Artifact Card & Smooth Drawer Reveal */
+.gallery-artifact-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0a070e;
+  border: 1px solid rgba(201, 194, 204, 0.16);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75);
+}
+
+.gallery-artifact-card .artifact-media {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: #08050a;
+}
+
+.gallery-artifact-card .artifact-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(105%) brightness(0.92);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.65s ease;
+}
+
+.gallery-artifact-card .artifact-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(7, 5, 8, 0.98) 0%,
+    rgba(7, 5, 8, 0.65) 45%,
+    rgba(7, 5, 8, 0.15) 75%,
+    transparent 100%
+  );
+  opacity: 0.9;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.gallery-artifact-card .artifact-drawer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.25rem;
+  z-index: 4;
+  transform: translateY(35px);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-artifact-card .artifact-actions {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.35s ease 0.05s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+}
+
+.gallery-artifact-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 0, 127, 0.6);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 0, 127, 0.35);
+}
+
+.gallery-artifact-card:hover .artifact-media img {
+  transform: scale(1.1);
+  filter: contrast(115%) brightness(1.04);
+}
+
+.gallery-artifact-card:hover .artifact-vignette {
+  opacity: 0.95;
+}
+
+.gallery-artifact-card:hover .artifact-drawer {
+  transform: translateY(0);
+}
+
+.gallery-artifact-card:hover .artifact-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 8. Interactive Nail Calculator Gothic Option Boxes (No generic flat buttons) */
+.calc-option-box {
+  position: relative;
+  background: linear-gradient(145deg, rgba(22, 14, 30, 0.85) 0%, rgba(12, 8, 16, 0.95) 100%);
+  border: 1px solid rgba(201, 194, 204, 0.18);
+  border-radius: 9px;
+  padding: 1rem 1.15rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  overflow: hidden;
+}
+
+.calc-option-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--neon-magenta);
+  box-shadow: 0 0 10px var(--neon-magenta);
+  transition: height 0.3s ease;
+}
+
+.calc-option-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 0, 127, 0.55);
+  background: linear-gradient(145deg, rgba(34, 18, 46, 0.95) 0%, rgba(18, 10, 24, 0.98) 100%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 18px rgba(255, 0, 127, 0.22);
+}
+
+.calc-option-box:hover::before {
+  height: 100%;
+}
+
+.calc-option-box.active {
+  border-color: var(--neon-magenta) !important;
+  background: linear-gradient(145deg, rgba(50, 18, 44, 0.95) 0%, rgba(22, 12, 30, 0.98) 100%) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 0, 127, 0.4), inset 0 0 15px rgba(255, 0, 127, 0.2) !important;
+}
+
+.calc-option-box.active::before {
+  height: 100%;
+}
+
+/* Charms and Accessory Gothic Toggles */
+.calc-charm-box {
+  position: relative;
+  background: rgba(18, 12, 24, 0.8);
+  border: 1px solid rgba(201, 194, 204, 0.16);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calc-charm-box:hover {
+  transform: translateX(4px);
+  border-color: rgba(255, 0, 127, 0.5);
+  background: rgba(30, 17, 40, 0.9);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), 0 0 14px rgba(255, 0, 127, 0.2);
+}
+
+.calc-charm-box.active {
+  border-color: var(--neon-magenta) !important;
+  background: rgba(45, 17, 38, 0.9) !important;
+  box-shadow: 0 0 16px rgba(255, 0, 127, 0.35) !important;
 }
 
 /* Stiletto & Gothic Buttons */
@@ -187,7 +581,7 @@ body {
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 18px rgba(255, 0, 127, 0.35);
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   clip-path: polygon(7% 0, 100% 0, 93% 100%, 0% 100%);
   display: inline-flex;
   align-items: center;
@@ -197,11 +591,34 @@ body {
   cursor: pointer;
 }
 
+/* Liquid Stiletto Shine Sweep on Button Hover */
+.btn-gothic-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: rotate(30deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
 .btn-gothic-primary:hover {
   background: linear-gradient(135deg, #bd1851 0%, #ff2a94 100%);
-  box-shadow: 0 6px 25px rgba(255, 0, 127, 0.6), 0 0 15px rgba(255, 0, 127, 0.4);
+  box-shadow: 0 6px 25px rgba(255, 0, 127, 0.6), 0 0 20px rgba(255, 0, 127, 0.45);
   transform: translateY(-2px);
   color: #ffffff !important;
+}
+
+.btn-gothic-primary:hover::after {
+  left: 140%;
 }
 
 .btn-gothic-outline {
@@ -213,10 +630,10 @@ body {
   text-transform: uppercase;
   font-size: 0.85rem;
   padding: 0.8rem 1.75rem;
-  border: 1px solid rgba(201, 194, 204, 0.4);
+  border: 1px solid rgba(201, 194, 204, 0.35);
   border-radius: 4px;
   position: relative;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   clip-path: polygon(7% 0, 100% 0, 93% 100%, 0% 100%);
   display: inline-flex;
   align-items: center;
@@ -224,13 +641,14 @@ body {
   gap: 0.5rem;
   text-decoration: none;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .btn-gothic-outline:hover {
-  background: rgba(255, 0, 127, 0.1);
+  background: rgba(255, 0, 127, 0.12);
   border-color: var(--neon-magenta);
   color: var(--neon-magenta) !important;
-  box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+  box-shadow: 0 0 18px rgba(255, 0, 127, 0.35);
   transform: translateY(-2px);
 }
 
@@ -306,6 +724,59 @@ body {
   height: 1px;
   width: 90px;
   background: linear-gradient(90deg, transparent, rgba(255, 0, 127, 0.5), transparent);
+}
+
+/* Floating Occult Runes Pulse */
+.runes-pulse {
+  display: inline-flex;
+  gap: 0.45rem;
+  letter-spacing: 0.2em;
+  animation: runesFloating 4s ease-in-out infinite;
+}
+
+@keyframes runesFloating {
+  0%, 100% {
+    transform: translateY(0);
+    text-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
+  }
+  50% {
+    transform: translateY(-3px);
+    text-shadow: 0 0 20px rgba(255, 0, 127, 0.85), 0 0 30px #85082e;
+  }
+}
+
+/* Service Highlights Hover Glow */
+.service-perk-item {
+  transition: all 0.25s ease;
+}
+
+.service-perk-item .perk-bullet {
+  transition: transform 0.25s ease, text-shadow 0.25s ease;
+  display: inline-block;
+}
+
+.gothic-reliquary-card:hover .service-perk-item {
+  color: var(--bone-white) !important;
+}
+
+.gothic-reliquary-card:hover .service-perk-item .perk-bullet {
+  color: var(--neon-magenta) !important;
+  text-shadow: 0 0 8px var(--neon-magenta);
+  transform: scale(1.25);
+}
+
+.gothic-reliquary-card .service-price-badge {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gothic-reliquary-card:hover .service-price-badge {
+  background: linear-gradient(135deg, rgba(255, 0, 127, 0.25) 0%, rgba(133, 8, 46, 0.35) 100%) !important;
+  border-color: rgba(255, 0, 127, 0.6) !important;
+  box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
+}
+
+.gothic-reliquary-card:hover .service-price-badge .price-text {
+  text-shadow: 0 0 14px rgba(255, 0, 127, 0.9);
 }
 
 /* Ambient Logo Glow */
@@ -390,9 +861,17 @@ body {
 /* Accordion Gothic */
 .accordion-gothic .accordion-item {
   background: rgba(20, 14, 27, 0.7);
-  border: 1px solid rgba(201, 194, 204, 0.12);
-  border-radius: 6px !important;
+  border: 1px solid rgba(201, 194, 204, 0.14);
+  border-radius: 8px !important;
   overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.accordion-gothic .accordion-item:hover {
+  border-color: rgba(255, 0, 127, 0.45);
+  background: rgba(28, 18, 38, 0.85);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 0, 127, 0.15);
+  transform: translateY(-2px);
 }
 
 .accordion-gothic .accordion-button {
@@ -403,12 +882,17 @@ body {
   letter-spacing: 0.05em;
   padding: 1.15rem 1.4rem;
   box-shadow: none;
+  transition: color 0.25s ease;
+}
+
+.accordion-gothic .accordion-button:hover {
+  color: var(--neon-magenta);
 }
 
 .accordion-gothic .accordion-button:not(.collapsed) {
-  background: rgba(255, 0, 127, 0.08);
+  background: rgba(255, 0, 127, 0.12);
   color: var(--neon-magenta);
-  border-bottom: 1px solid rgba(255, 0, 127, 0.2);
+  border-bottom: 1px solid rgba(255, 0, 127, 0.25);
 }
 
 .accordion-gothic .accordion-body {
