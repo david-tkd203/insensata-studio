@@ -2,6 +2,7 @@
 
 // src/components/Footer.jsx
 import React from 'react';
+import Link from 'next/link';
 import { STUDIO_INFO } from '../data/nailData';
 
 export default function Footer({ onOpenBooking }) {
@@ -89,14 +90,19 @@ export default function Footer({ onOpenBooking }) {
             </h4>
             <ul className="list-unstyled font-serif fs-7 d-flex flex-column gap-2">
               <li>
-                <a href="#hero" className="text-bone-muted text-decoration-none hover-magenta">
+                <Link href="/" className="text-bone-muted text-decoration-none hover-magenta">
                   Inicio
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" className="text-bone-muted text-decoration-none hover-magenta">
+                <Link href="/quienes-somos" className="text-bone-muted text-decoration-none hover-magenta">
+                  Quiénes Somos / Manifiesto
+                </Link>
+              </li>
+              <li>
+                <Link href="/#about" className="text-bone-muted text-decoration-none hover-magenta">
                   El Manifiesto
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#gallery" className="text-bone-muted text-decoration-none hover-magenta">

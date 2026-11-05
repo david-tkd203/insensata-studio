@@ -1425,3 +1425,14 @@ body {
 .hover-magenta:hover {
   color: var(--neon-magenta) !important;
 }
+
+/* Editorial Canvas & Auth Enhancements */
+.editorial-auth-canvas {
+  position: relative;
+  background: transparent;
+}
+
+::selection {
+  background: var(--neon-magenta);
+  color: #fff;
+}

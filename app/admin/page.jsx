@@ -228,6 +228,61 @@ export default function AdminDashboardPage() {
     return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
   };
 
+  // Generate 24h Reminder WhatsApp Link
+  const get24hReminderWhatsAppLink = (appt) => {
+    const message = `Hola ${appt.client_name}! 🕯️ Te recordamos desde Insensata Estudio que mañana ${appt.appointment_date} tienes tu turno a las ${appt.time_slot} hs para ${appt.service_name} (${appt.shape_length || 'Largo estándar'}).
+
+📍 Ubicación: Humboldt y Nicaragua, Palermo Hollywood (Atelier Privado timbre "Insensata").
+⏳ Tolerancia estricta: 15 minutos.
+✦ Preparación: No te cortes cutículas las 48hs previas y evita aplicar aceites o cremas 2hs antes.
+
+¿Nos confirmas tu asistencia? ¡Muchas gracias! 🖤`;
+
+    const cleanPhone = appt.client_phone.replace(/[^0-9]/g, '');
+    return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+  };
+
+  // 1-Click WhatsApp Reminder Handler
+  const handleSendWhatsAppReminder = async (appt) => {
+    setActionLoading(appt.id);
+    try {
+      const url = get24hReminderWhatsAppLink(appt);
+      window.open(url, '_blank');
+
+      const res = await fetch(`/api/appointments/${appt.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reminder_sent: 1 }),
+      });
+
+      if (res.ok) {
+        await loadAppointments();
+      }
+    } catch (err) {
+      console.error('Error enviando recordatorio:', err);
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  // Trigger Cron Reminders manually
+  const handleTriggerCronReminders = async () => {
+    if (!confirm('¿Ejecutar envío de recordatorios automáticos 24h para las citas de mañana?')) return;
+    try {
+      const res = await fetch('/api/cron/reminders');
+      const data = await res.json();
+      if (data.success) {
+        alert(`Recordatorios 24h procesados: ${data.reminders_sent} enviados para fecha ${data.target_date}.`);
+        await loadAppointments();
+      } else {
+        alert(`Error al ejecutar cron: ${data.error}`);
+      }
+    } catch (err) {
+      console.error('Cron trigger error:', err);
+      alert('Error de conexión al ejecutar cron de recordatorios.');
+    }
+  };
+
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' });
     router.push('/login');
@@ -283,6 +338,13 @@ export default function AdminDashboardPage() {
 
             {/* Quick Actions */}
             <div className="d-flex align-items-center gap-2">
+              <button
+                onClick={handleTriggerCronReminders}
+                className="btn-gothic-outline btn-gothic-sm text-magenta border-magenta"
+                title="Ejecutar recordatorios automáticos de 24 horas para mañana"
+              >
+                <i className="bi bi-bell-fill me-1"></i> Cron 24h
+              </button>
               <Link href="/" className="btn-gothic-outline btn-gothic-sm">
                 <i className="bi bi-globe"></i> Ver Web
               </Link>
@@ -539,9 +601,16 @@ export default function AdminDashboardPage() {
                               <i className="bi bi-calendar3 me-1 text-magenta"></i>
                               {appt.appointment_date}
                             </span>
-                            <span className="badge-gothic fs-8 mt-1 d-inline-block">
-                              <i className="bi bi-clock me-1"></i> {appt.time_slot} hs
-                            </span>
+                            <div className="d-flex align-items-center gap-1 mt-1">
+                              <span className="badge-gothic fs-8 d-inline-block">
+                                <i className="bi bi-clock me-1"></i> {appt.time_slot} hs
+                              </span>
+                              {appt.reminder_sent === 1 && (
+                                <span className="badge bg-black text-magenta border border-magenta fs-8" title="Recordatorio 24h enviado">
+                                  <i className="bi bi-bell-fill"></i> 24h
+                                </span>
+                              )}
+                            </div>
                           </td>
 
                           {/* Price and Deposit */}
@@ -594,6 +663,25 @@ export default function AdminDashboardPage() {
                                   title="Aprobar y marcar seña como recibida"
                                 >
                                   <i className="bi bi-check-lg"></i> Aprobar
+                                </button>
+                              )}
+
+                              {/* If Confirmado: 1-Click WhatsApp 24h Reminder button */}
+                              {appt.status === 'Confirmado' && (
+                                <button
+                                  onClick={() => handleSendWhatsAppReminder(appt)}
+                                  disabled={actionLoading === appt.id}
+                                  className="btn btn-sm"
+                                  style={{
+                                    border: appt.reminder_sent === 1 ? '1px solid rgba(201, 194, 204, 0.3)' : '1px solid var(--neon-magenta)',
+                                    color: appt.reminder_sent === 1 ? 'var(--bone-muted)' : 'var(--neon-magenta)',
+                                    background: appt.reminder_sent === 1 ? 'transparent' : 'rgba(255, 0, 127, 0.12)',
+                                    fontSize: '0.74rem',
+                                  }}
+                                  title="Abrir WhatsApp con plantilla de recordatorio 24h y marcar como enviado"
+                                >
+                                  <i className={`bi ${appt.reminder_sent === 1 ? 'bi-check2-circle text-success' : 'bi-whatsapp text-magenta'} me-1`}></i>
+                                  {appt.reminder_sent === 1 ? '24h Enviado' : 'Recordatorio 24h (WA)'}
                                 </button>
                               )}
 

@@ -112,6 +112,11 @@ export default function Navbar({ onOpenBooking }) {
         <div className={`collapse navbar-collapse ${navOpen ? 'show bg-obsidian-surface p-3 mt-3 rounded shadow-lg' : ''}`}>
           <ul className="navbar-nav mx-auto mb-2 mb-xl-0 text-uppercase font-serif fs-7 gap-xl-2">
             <li className="nav-item">
+              <Link className="nav-link text-bone hover-magenta px-2" href="/quienes-somos" onClick={closeNav}>
+                Quiénes Somos
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link text-bone hover-magenta px-2" href="/#about" onClick={closeNav}>
                 Atelier
               </Link>

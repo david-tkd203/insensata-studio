@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server';
 import { createUser, getUserByEmail } from '@/lib/db';
 import { hashPassword, signToken, COOKIE_NAME } from '@/lib/auth';
+import { sendWelcomeEmail } from '@/lib/emailService';
 
 export async function POST(request) {
   try {
@@ -44,6 +45,13 @@ export async function POST(request) {
       name: user.name,
       role: user.role,
     });
+
+    // Safely send welcome email to new member
+    try {
+      await sendWelcomeEmail({ email: user.email, name: user.name });
+    } catch (emailErr) {
+      console.error('Welcome email dispatch error (non-fatal):', emailErr);
+    }
 
     const response = NextResponse.json({
       success: true,

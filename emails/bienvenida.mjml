@@ -1,0 +1,103 @@
+<mjml>
+  <mj-head>
+    <mj-title>Bienvenida al Aquelarre Insensata</mj-title>
+    <mj-preview>Bienvenida a Insensata Estudio — Santuario de Uñas Obscuras en Palermo Hollywood</mj-preview>
+    <mj-font name="Cinzel" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&display=swap" />
+    <mj-font name="Montserrat" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" />
+    <mj-attributes>
+      <mj-all font-family="'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" />
+      <mj-text font-size="14px" color="#c9c2cc" line-height="1.6" />
+      <mj-section background-color="#0e0a12" padding="20px" />
+    </mj-attributes>
+    <mj-style inline="inline">
+      .glow-border {
+        border: 1px solid #ff007f !important;
+        box-shadow: 0 0 15px rgba(255, 0, 127, 0.35) !important;
+      }
+      .gothic-heading {
+        font-family: 'Cinzel', serif !important;
+        letter-spacing: 0.12em !important;
+      }
+      .link-magenta {
+        color: #ff007f !important;
+        text-decoration: none !important;
+        font-weight: 600;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#070508">
+    <!-- Top Crest Bar -->
+    <mj-section padding="25px 0 15px 0" background-color="#070508">
+      <mj-column>
+        <mj-text align="center" font-size="11px" color="#ff007f" letter-spacing="0.25em" font-weight="700">
+          ✦ ☾ SANTUARIO DE UÑAS OBSCURAS ☽ ✦
+        </mj-text>
+        <mj-text align="center" font-size="24px" color="#f5f0f7" font-weight="900" font-family="'Cinzel', serif" letter-spacing="0.18em" padding-top="6px">
+          INSENSATA ESTUDIO
+        </mj-text>
+        <mj-text align="center" font-size="12px" color="#9f94a6" letter-spacing="0.15em">
+          HAUTE COUTURE NAIL ARTISTRY • PALERMO HOLLYWOOD
+        </mj-text>
+        <mj-divider border-width="1px" border-style="solid" border-color="rgba(255, 0, 127, 0.3)" width="70%" padding="15px 0 5px 0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Main Reliquary Card -->
+    <mj-section background-color="#140e1b" border="1px solid #312140" border-radius="8px" padding="35px 25px">
+      <mj-column>
+        <mj-text align="center" font-size="11px" color="#ff007f" font-weight="700" letter-spacing="0.2em">
+          MEMBRESÍA EXCLUSIVA CONFIRMADA
+        </mj-text>
+        <mj-text align="center" font-size="22px" color="#f5f0f7" font-family="'Cinzel', serif" font-weight="700" padding="10px 0 15px 0">
+          Bienvenida al Aquelarre, {{client_name}}
+        </mj-text>
+
+        <mj-text align="center" font-size="15px" color="#e5dfe7" line-height="1.7">
+          Tu cuenta ha sido consagrada en nuestro atelier. A partir de este momento, dejas atrás lo ordinario para ingresar a un universo donde cada uña es esculpida como una obra arquitectónica de seducción y poder.
+        </mj-text>
+
+        <mj-divider border-width="1px" border-style="dashed" border-color="rgba(201, 194, 204, 0.2)" width="40%" padding="20px 0" />
+
+        <!-- Perks Section -->
+        <mj-text font-size="14px" color="#ff007f" font-family="'Cinzel', serif" font-weight="700" letter-spacing="0.1em" padding-bottom="8px">
+          ✦ TUS PRIVILEGIOS DE MIEMBRO
+        </mj-text>
+
+        <mj-text color="#c9c2cc" font-size="13px" line-height="1.8">
+          <strong style="color: #f5f0f7;">♰ Atención 100% Personalizada 1-a-1:</strong> Sesiones privadas en nuestro atelier de Palermo Hollywood con dark ambient, café de especialidad y atmósfera inmersiva.<br />
+          <strong style="color: #f5f0f7;">♰ Retención Extrema de 4+ Semanas:</strong> Manicuría rusa de hardware e-file y sellado molecular hipoalergénico 9-free.<br />
+          <strong style="color: #f5f0f7;">♰ Escultura 3D & Charms Góticos:</strong> Cruces barrocas, cromo líquido, piercings reales y dijes fundidos en plata.<br />
+          <strong style="color: #f5f0f7;">♰ Prioridad en Apertura de Agenda:</strong> Acceso anticipado a los cupos exclusivos del mes antes de su publicación general.
+        </mj-text>
+
+        <mj-button background-color="#ff007f" color="#ffffff" font-family="'Cinzel', serif" font-size="13px" font-weight="700" letter-spacing="0.12em" border-radius="4px" href="{{booking_url}}" padding="25px 0 10px 0" inner-padding="14px 28px">
+          EXPLORAR CARTA & AGENDAR CITA
+        </mj-button>
+      </mj-column>
+    </mj-section>
+
+    <!-- Atelier Hygiene & Guarantee Note -->
+    <mj-section background-color="#0e0a12" padding="20px 25px">
+      <mj-column>
+        <mj-text align="center" font-size="12px" color="#9f94a6" line-height="1.6">
+          <strong style="color: #c9c2cc;">Protocolo de Bioseguridad Hospitalaria:</strong> Todo nuestro instrumental pasa por esterilización en autoclave médico Clase B y es embolsado con testigo químico individual frente a tus ojos.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Footer -->
+    <mj-section background-color="#070508" padding="20px 0">
+      <mj-column>
+        <mj-text align="center" font-size="12px" color="#9f94a6">
+          INSENSATA ESTUDIO • Palermo Hollywood, CABA, Argentina
+        </mj-text>
+        <mj-text align="center" font-size="11px" color="#9f94a6" padding-top="4px">
+          WhatsApp: <a href="https://wa.me/{{whatsapp_clean}}" class="link-magenta">{{whatsapp_number}}</a> • Instagram: <a href="https://instagram.com/insensata.estudio" class="link-magenta">@insensata.estudio</a>
+        </mj-text>
+        <mj-text align="center" font-size="10px" color="#5a4e61" padding-top="12px">
+          "Las uñas son el único accesorio que jamás te quitas. Haz que intimiden."
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

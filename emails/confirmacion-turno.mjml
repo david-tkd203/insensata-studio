@@ -1,0 +1,143 @@
+<mjml>
+  <mj-head>
+    <mj-title>Confirmación de Reserva • Insensata Estudio</mj-title>
+    <mj-preview>Tu turno #{{appointment_id}} ha sido registrado en Insensata Estudio. Detalles de tu cita y seña.</mj-preview>
+    <mj-font name="Cinzel" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&display=swap" />
+    <mj-font name="Montserrat" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" />
+    <mj-attributes>
+      <mj-all font-family="'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" />
+      <mj-text font-size="14px" color="#c9c2cc" line-height="1.6" />
+      <mj-section background-color="#0e0a12" padding="20px" />
+    </mj-attributes>
+    <mj-style inline="inline">
+      .gothic-heading {
+        font-family: 'Cinzel', serif !important;
+        letter-spacing: 0.12em !important;
+      }
+      .link-magenta {
+        color: #ff007f !important;
+        text-decoration: none !important;
+        font-weight: 600;
+      }
+      .detail-box {
+        background-color: #1a1224 !important;
+        border: 1px solid #3d224e !important;
+        border-radius: 6px !important;
+        padding: 16px !important;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#070508">
+    <!-- Brand Header -->
+    <mj-section padding="25px 0 15px 0" background-color="#070508">
+      <mj-column>
+        <mj-text align="center" font-size="11px" color="#ff007f" letter-spacing="0.25em" font-weight="700">
+          ✦ ☾ SOLICITUD DE TURNO REGISTRADA ☽ ✦
+        </mj-text>
+        <mj-text align="center" font-size="24px" color="#f5f0f7" font-weight="900" font-family="'Cinzel', serif" letter-spacing="0.18em" padding-top="6px">
+          INSENSATA ESTUDIO
+        </mj-text>
+        <mj-text align="center" font-size="12px" color="#9f94a6" letter-spacing="0.15em">
+          ATELIER PRIVADO • HAUTE COUTURE NAILS
+        </mj-text>
+        <mj-divider border-width="1px" border-style="solid" border-color="rgba(255, 0, 127, 0.3)" width="70%" padding="15px 0 5px 0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Main Card -->
+    <mj-section background-color="#140e1b" border="1px solid #312140" border-radius="8px" padding="30px 25px">
+      <mj-column>
+        <mj-text align="center" font-size="11px" color="#ff007f" font-weight="700" letter-spacing="0.2em">
+          RESERVA EN ESPERA DE SEÑA
+        </mj-text>
+        <mj-text align="center" font-size="22px" color="#f5f0f7" font-family="'Cinzel', serif" font-weight="700" padding="8px 0 12px 0">
+          Turno #{{appointment_id}} Solicitado
+        </mj-text>
+        <mj-text align="center" font-size="14px" color="#e5dfe7" line-height="1.6">
+          Hola <strong style="color: #ff007f;">{{client_name}}</strong>, hemos recibido tu solicitud de cita para el santuario. A continuación detallamos la información de tu sesión:
+        </mj-text>
+
+        <!-- Appointment Details Box -->
+        <mj-table padding="20px 0" font-family="'Montserrat', sans-serif" font-size="13px" color="#c9c2cc">
+          <tr style="border-bottom: 1px solid #2a1a36; text-align: left;">
+            <td style="padding: 10px 0; color: #9f94a6; width: 40%;">Servicio:</td>
+            <td style="padding: 10px 0; color: #f5f0f7; font-weight: 600;">{{service_name}}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #2a1a36; text-align: left;">
+            <td style="padding: 10px 0; color: #9f94a6;">Largo / Forma:</td>
+            <td style="padding: 10px 0; color: #ff007f; font-weight: 600;">{{shape_length}}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #2a1a36; text-align: left;">
+            <td style="padding: 10px 0; color: #9f94a6;">Fecha de la Cita:</td>
+            <td style="padding: 10px 0; color: #f5f0f7; font-weight: 700;">{{appointment_date}}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #2a1a36; text-align: left;">
+            <td style="padding: 10px 0; color: #9f94a6;">Horario Asignado:</td>
+            <td style="padding: 10px 0; color: #f5f0f7; font-weight: 700;">{{time_slot}} hs</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #2a1a36; text-align: left;">
+            <td style="padding: 10px 0; color: #9f94a6;">Presupuesto Estimado:</td>
+            <td style="padding: 10px 0; color: #ff007f; font-weight: 700; font-size: 15px;">{{estimated_price}}</td>
+          </tr>
+          <tr style="text-align: left;">
+            <td style="padding: 10px 0; color: #9f94a6;">Ubicación:</td>
+            <td style="padding: 10px 0; color: #c9c2cc;">Palermo Hollywood (Atelier Privado)</td>
+          </tr>
+        </mj-table>
+
+        <mj-divider border-width="1px" border-style="dashed" border-color="rgba(255, 0, 127, 0.3)" width="90%" padding="10px 0 20px 0" />
+
+        <!-- Deposit Instructions -->
+        <mj-text font-size="14px" color="#ff007f" font-family="'Cinzel', serif" font-weight="700" letter-spacing="0.1em">
+          ✦ INSTRUCCIONES DE SEÑA PARA CONFIRMAR (50%)
+        </mj-text>
+        <mj-text color="#e5dfe7" font-size="13px" line-height="1.7">
+          Para congelar tu horario y dar de alta la cita en la agenda de la Directrice, es condición indispensable abonar el <strong>50% del valor estimado en concepto de seña</strong> dentro de las próximas <strong>2 horas</strong>.
+        </mj-text>
+
+        <mj-text align="center" padding="15px 0">
+          <div style="background-color: #070508; border: 1px solid #ff007f; border-radius: 4px; padding: 16px; text-align: center;">
+            <div style="font-size: 11px; color: #9f94a6; letter-spacing: 0.15em; text-transform: uppercase;">
+              ALIAS BANCARIO / MERCADO PAGO:
+            </div>
+            <div style="font-size: 20px; color: #ff007f; font-weight: 800; font-family: 'Cinzel', serif; letter-spacing: 0.15em; margin: 6px 0;">
+              INSENSATA.NAILS
+            </div>
+            <div style="font-size: 12px; color: #c9c2cc;">
+              Titular: Insensata Estudio • Banco / MP
+            </div>
+          </div>
+        </mj-text>
+
+        <mj-text align="center" color="#c9c2cc" font-size="13px" padding-top="20px">
+          Una vez realizada la transferencia, envía el comprobante vía WhatsApp indicando tu <strong>Turno #{{appointment_id}}</strong>:
+        </mj-text>
+
+        <mj-button background-color="#25d366" color="#ffffff" font-family="'Montserrat', sans-serif" font-size="13px" font-weight="700" border-radius="4px" href="{{whatsapp_url}}" padding="15px 0 5px 0" inner-padding="14px 28px">
+          ENVIAR COMPROBANTE POR WHATSAPP ↗
+        </mj-button>
+      </mj-column>
+    </mj-section>
+
+    <!-- Policies Reminder -->
+    <mj-section background-color="#0e0a12" padding="20px 25px">
+      <mj-column>
+        <mj-text align="center" font-size="12px" color="#9f94a6" line-height="1.6">
+          <strong style="color: #ff007f;">Tolerancia Estricta de 15 Minutos:</strong> Por respeto al descanso y las reservas consecutivas del atelier, pasados 15 minutos sin aviso el turno se cancela automáticamente y la seña no es reembolsable.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Footer -->
+    <mj-section background-color="#070508" padding="20px 0">
+      <mj-column>
+        <mj-text align="center" font-size="12px" color="#9f94a6">
+          INSENSATA ESTUDIO • Palermo Hollywood, CABA
+        </mj-text>
+        <mj-text align="center" font-size="11px" color="#9f94a6" padding-top="4px">
+          WhatsApp: <a href="https://wa.me/{{whatsapp_clean}}" class="link-magenta">{{whatsapp_number}}</a> • Instagram: <a href="https://instagram.com/insensata.estudio" class="link-magenta">@insensata.estudio</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

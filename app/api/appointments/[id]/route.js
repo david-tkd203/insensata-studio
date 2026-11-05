@@ -23,14 +23,15 @@ export async function PATCH(request, { params }) {
     }
 
     const body = await request.json();
-    const { status, deposit_paid } = body;
+    const { status, deposit_paid, reminder_sent } = body;
 
     // Admin can update anything
     if (user.role === 'admin') {
       const updated = updateAppointmentStatus(
         appointmentId,
-        status || existing.status,
-        deposit_paid !== undefined ? deposit_paid : existing.deposit_paid
+        status !== undefined ? status : existing.status,
+        deposit_paid !== undefined ? deposit_paid : existing.deposit_paid,
+        reminder_sent !== undefined ? reminder_sent : existing.reminder_sent
       );
       return NextResponse.json({ success: true, appointment: updated });
     }

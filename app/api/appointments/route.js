@@ -7,6 +7,7 @@ import {
   getAvailabilityForDate,
 } from '@/lib/db';
 import { getCurrentUser } from '@/lib/auth';
+import { sendAppointmentConfirmationEmail } from '@/lib/emailService';
 
 export async function GET(request) {
   try {
@@ -94,6 +95,13 @@ export async function POST(request) {
       status: 'Pendiente',
       deposit_paid: 0,
     });
+
+    // Safely send appointment confirmation email with deposit instructions
+    try {
+      await sendAppointmentConfirmationEmail(appointment);
+    } catch (emailErr) {
+      console.error('Confirmation email dispatch error (non-fatal):', emailErr);
+    }
 
     return NextResponse.json({
       success: true,
